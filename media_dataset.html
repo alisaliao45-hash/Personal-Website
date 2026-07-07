@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Dataset | Media Classifier | Alisa Liao</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">H O M E</a>
+            <ul class="nav-menu">
+                <li><a href="work.html">W O R K</a></li>
+                <li><a href="#art">A R T</a></li>
+                <li><a href="#me">M E</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section class="hero-section">
+            <a href="media_classifier.html" class="back-link">← BACK TO MEDIA CLASSIFIER</a>
+            <h1 class="project-title" style="margin-top: 1.5rem;">LIVE DATASET</h1>
+            <p class="project-subtitle">EVERY PROMPT LABELLED SO FAR THROUGH THE MEDIA BALLOT</p>
+        </section>
+
+        <section class="content-section">
+            <div id="mc-stats-full"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#email">E M A I L</a>
+            <a href="#tiktok">T I K T O K</a>
+            <a href="#instagram">I N S T A G R A M</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        async function loadFullStats() {
+            const res = await fetch("https://media-classifier.onrender.com/stats");
+            const { summary, prompts } = await res.json();
+
+            const truncate = (str, n) => str && str.length > n ? str.slice(0, n) + "..." : str;
+
+            let html = `
+                <p class="project-text"><strong>${summary.finalized}</strong> prompts finalized &nbsp;·&nbsp;
+                   <strong>${summary.in_progress}</strong> in progress &nbsp;·&nbsp;
+                   <strong>${summary.unlabeled}</strong> unlabeled</p>
+                <table class="stats-table">
+                  <thead>
+                    <tr>
+                      <th rowspan="2">Prompt</th>
+                      <th rowspan="2">Response</th>
+                      <th colspan="6">Votes</th>
+                    </tr>
+                    <tr>
+                      <th>Diagram</th>
+                      <th>Video</th>
+                      <th>Audio</th>
+                      <th>Text</th>
+                      <th>Leading</th>
+                      <th>Final?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+            `;
+
+            for (const p of prompts) {
+                html += `
+                  <tr>
+                    <td>${truncate(p.text, 80)}</td>
+                    <td>${truncate(p.response, 80)}</td>
+                    <td>${p.votes_diagram}</td>
+                    <td>${p.votes_video}</td>
+                    <td>${p.votes_audio}</td>
+                    <td>${p.votes_text}</td>
+                    <td><strong>${p.leading_label}</strong></td>
+                    <td>${p.is_finalized ? "✅" : "⏳"}</td>
+                  </tr>
+                `;
+            }
+
+            html += `</tbody></table>`;
+            document.getElementById("mc-stats-full").innerHTML = html;
+        }
+
+        loadFullStats();
+        setInterval(loadFullStats, 30000);
+    </script>
+</body>
+</html>

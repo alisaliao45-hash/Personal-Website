@@ -12,7 +12,7 @@
         <div class="nav-container">
             <a href="#home" class="nav-logo">H O M E</a>
             <ul class="nav-menu">
-                <li><a href="#work">W O R K</a></li>
+                <li><a href="work.html">W O R K</a></li>
                 <li><a href="#art">A R T</a></li>
                 <li><a href="#me">M E</a></li>
             </ul>
@@ -50,7 +50,7 @@
         <!-- Hero Image -->
         <section class="hero-image">
             <div class="image-placeholder">
-                <!-- Placeholder for hero image -->
+                <img src="media_photo.png" alt="Media Classifier Hero Image" class="hero-img">
             </div>
         </section>
 
@@ -60,20 +60,20 @@
             <div class="section-content">
                 <div class="left-column">
                     <div class="section-header">
-                        <a href="#work" class="back-link">← BACK TO WORK</a>
+                        <a href="work.html" class="back-link">← BACK TO WORK</a>
                     </div>
                     <ul class="approach-list">
-                        <li>THE CONCEPT</li>
-                        <li>OUR DATA</li>
-                        <li>MEDIA BALLOT</li>
-                        <li>MODEL</li>
-                        <li>LIMITATIONS AND ISSUES</li>
-                        <li>SOURCES</li>
+                        <li><a href="#concept" data-nav-link>THE CONCEPT</a></li>
+                        <li><a href="#our-data" data-nav-link>OUR DATA</a></li>
+                        <li><a href="#media-ballot" data-nav-link>MEDIA BALLOT</a></li>
+                        <li><a href="#model" data-nav-link>MODEL</a></li>
+                        <li><a href="#limitations" data-nav-link>LIMITATIONS AND ISSUES</a></li>
+                        <li><a href="#sources" data-nav-link>SOURCES</a></li>
                     </ul>
                 </div>
 
                 <div class="right-column">
-                    <div>
+                    <div id="concept">
                         <h2 class="project-section-title">THE CONCEPT</h2>
                         <p class="project-text">Given the onset of AI, designers can't help but ask the question: what will interfaces look like now?</p>
                         <p class="project-text">Web and app interfaces, since their creation, have pretty much always played by the same rules of rigidity. Designers would try to understand what a general user would prefer and offer these options to everyone. However, with AI, interfaces have the potential of becoming much more personalized, streamlined, and centralized.</p>
@@ -83,14 +83,14 @@
 
                     <img src="divider.svg" alt="" class="section-divider">
 
-                    <div class="content-section approach-section">
+                    <div class="content-section approach-section" id="our-data">
                         <h2 class="project-section-title">OUR DATA</h2>
-                        <p class="project-text">The plan was to obtain existing AI chatbot user prompt data and manually label what sort of media would work best for each prompt (ie. text, audio, video). The data I obtained is the WildChat dataset, which consists of 1 million ChatGPT prompts and responses from users all across the world (Deng, 2024). I extracted just the English prompts for this project.</p>
+                        <p class="project-text">The plan was to obtain existing AI chatbot user prompt data and manually label what sort of media would work best for each prompt (ie. text, audio, video). The data I obtained is the WildChat dataset, which consists of 1 million ChatGPT prompts and responses from users all across the world <a href="https://arxiv.org/abs/2401.01234" target="_blank">(Deng, 2024)</a>. I extracted just the English prompts for this project.</p>
                     </div>
 
                     <img src="divider.svg" alt="" class="section-divider">
 
-                    <div class="content-section research-section">
+                    <div class="content-section research-section" id="media-ballot">
                         <h2 class="project-section-title">MEDIA BALLOT</h2>
                         <p class="project-text">Manually labelling each prompt was problematic. "What media would work best for each prompt" is a pretty subjective question, and would require multiple user inputs to confirm some sort of general consensus for each prompt and its label. The solution was a publicly available page where anyone could have access to and label randomly chosen prompts. Each prompt would get to be labelled 3 times by users before being removed from the pool. Like in a voting process, the majority label "wins" and acts as the final label for that prompt to be put in the dataset. I've named it "Media Ballot".</p>
 
@@ -104,14 +104,21 @@
                             </ul>
                         </div>
 
-                        <div class="competitive-analysis-placeholder">
-                          <p class="problem-text">While it is just a simple webpage, as a designer I had to start the process through ideation.</p>
-                          <h3 class="research-subtitle">WIREFRAMES</h3>
-                            <!-- Placeholder for wireframe processes and images -->
+                        <div class="competitive-analysis-placeholder wireframes-placeholder">
+                          <h3 class="wireframe-subtitle">WIREFRAMES</h3>
+                            <div class="wireframes-row">
+                                <img src="media_wireframe_1.jpg" alt="Media Ballot wireframe 1" class="wireframe-img">
+                                <div class="wireframe-stack">
+                                    <img src="media_wireframe_2.jpg" alt="Media Ballot wireframe 2" class="wireframe-img">
+                                    <img src="media_wireframe_4.png" alt="Media Ballot wireframe 4" class="wireframe-img">
+                                </div>
+                                <img src="media_wireframe_3.png" alt="Media Ballot wireframe 3" class="wireframe-img">
+                            </div>
                         </div>
 
                         <div class="ballot-cta">
-                            <p class="ballot-cta-text">Click here to access the Media Ballot and do some labelling yourself!</p>
+                            <h3 class="ballot-cta-text">FINAL PRODUCT</h3>
+                            <p class="problem-text">Click here to access the Media Ballot and do some labelling yourself!</p>
                             <a href="https://alisaliao45-hash.github.io/Media-Classifier/" target="_blank" rel="noopener" class="ballot-button">Media Ballot</a>
                         </div>
 
@@ -121,29 +128,29 @@
 
                     <img src="divider.svg" alt="" class="section-divider">
 
-                    <div class="content-section designs-section">
+                    <div class="content-section designs-section" id="model">
                         <h2 class="project-section-title">MODEL</h2>
-                        <p class="project-text">If we do manage to accomplish labelling for all 2500 prompts, the next step would be to put the data in a DistilBERT model to actually create the classifier.</p>
+                        <p class="project-text">If we do manage to accomplish labelling for all 2500 prompts, the next step would be to put the data in a DistilBERT model to actually create the classifier. For smaller datasets, I plan to first use Naive Bayes, then Logistic Regression as a starting point. </p>
                     </div>
 
                     <img src="divider.svg" alt="" class="section-divider">
 
-                    <div class="content-section user-testing-section">
+                    <div class="content-section user-testing-section" id="limitations">
                         <h2 class="project-section-title">LIMITATIONS AND ISSUES</h2>
                         <p class="project-text">There is definitely potential bias in the original WildChat dataset. It was obtained through two ChatGPT models put on HuggingFace, where users would give their consent for their prompts and information to be collected. Since it is voluntary and on a platform with a very specific user base, it is a form of survey, which is always biased. Biased training data results in a biased model.</p>
                         <p class="project-text">Many prompts are confusing, and the original intentions behind them are unclear, resulting in users of the Media Ballot to be unable to decide what media to assign the prompt. A more selective dataset with specific, information based queries would fix this problem.</p>
                         <p class="project-text">I also acknowledge that the categories Text, Audio, Video, and Diagrams are very broad. For example within Text, we can have essays, lists, summaries, etc. In the future I'd consider multimedia options such as infographics, slidedecks, etc. The Media Ballot is only a starting point that may not effectively capture this nuance.</p>
                         <p class="project-text">Also, having people tell you what media they would prefer best isn't a very scientific method because it's subjective and I think a lot of times people don't know what they like most. A more objective measure of types of media lessening cognitive load would be to conduct an experiment measuring participant reaction time/comprehension given a prompt and the response in a certain form of media.</p>
+                        <p class="project-text">Finally, of course, I didn't create the actul model because I need many more labelled data points than what I have now (anything over 200). This critical point exposes this project as just an exploration outlining how one might go about creating this classifier model. Future steps include creating the classifier model and using it to build a more complex AI that utilizes the classifications to generate actual outputs. </p>
                     </div>
 
                     <img src="divider.svg" alt="" class="section-divider">
 
-                    <div class="content-section sources-section">
+                    <div class="content-section sources-section" id="sources">
                         <h2 class="project-section-title">SOURCES</h2>
+                        <p class="project-text"><a href="https://arxiv.org/abs/2405.01470" target="_blank" rel="noopener" class="back-link">Wildchat Dataset by Yuntian Deng</a></p>
                         <p class="project-text"><a href="https://www.jsu.edu/online/faculty/MULTIMEDIA%20LEARNING%20by%20Richard%20E.%20Mayer.pdf" target="_blank" rel="noopener" class="back-link">Multimedia Learning by Richard E. Mayer</a></p>
                     </div>
-
-                    <img src="divider.svg" alt="" class="section-divider">
                 </div>
             </div>
         </section>
@@ -170,6 +177,7 @@
                 <p class="project-text"><strong>${summary.finalized}</strong> prompts finalized &nbsp;·&nbsp;
                    <strong>${summary.in_progress}</strong> in progress &nbsp;·&nbsp;
                    <strong>${summary.unlabeled}</strong> unlabeled</p>
+                <div class="stats-table-wrapper">
                 <table class="stats-table">
                   <thead>
                     <tr>
@@ -189,7 +197,8 @@
                   <tbody>
             `;
 
-            for (const p of prompts) {
+            const LIMIT = 5;
+            for (const p of prompts.slice(0, LIMIT)) {
                 html += `
                   <tr>
                     <td>${truncate(p.text, 80)}</td>
@@ -199,17 +208,64 @@
                     <td>${p.votes_audio}</td>
                     <td>${p.votes_text}</td>
                     <td><strong>${p.leading_label}</strong></td>
-                    <td>${p.is_finalized ? "✅" : "⏳"}</td>
+                    <td>${p.is_finalized ? "yes" : "no"}</td>
                   </tr>
                 `;
             }
 
-            html += `</tbody></table>`;
+            html += `</tbody></table></div>`;
+
+            if (prompts.length > LIMIT) {
+                html += `
+                    <div class="ballot-cta">
+                        <a href="media_dataset.html" class="ballot-button">View All Responses</a>
+                    </div>
+                `;
+            }
+
             document.getElementById("mc-stats").innerHTML = html;
         }
 
         loadStats();
         setInterval(loadStats, 30000);
+    </script>
+
+    <script>
+        const navLinks = document.querySelectorAll('[data-nav-link]');
+        const navSections = Array.from(navLinks)
+            .map(link => document.getElementById(link.getAttribute('href').slice(1)))
+            .filter(Boolean);
+
+        const setActiveLink = (id) => {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            });
+        };
+
+        const intersecting = new Map();
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                intersecting.set(entry.target.id, entry.isIntersecting ? entry.boundingClientRect.top : null);
+            });
+
+            const visible = navSections
+                .filter(section => intersecting.get(section.id) !== null && intersecting.get(section.id) !== undefined)
+                .sort((a, b) => intersecting.get(a.id) - intersecting.get(b.id));
+
+            if (visible.length > 0) {
+                setActiveLink(visible[0].id);
+            }
+        }, { rootMargin: '-100px 0px -70% 0px', threshold: 0 });
+
+        navSections.forEach(section => sectionObserver.observe(section));
+
+        window.addEventListener('scroll', () => {
+            const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+            if (atBottom) {
+                setActiveLink(navSections[navSections.length - 1].id);
+            }
+        }, { passive: true });
     </script>
 </body>
 </html>
