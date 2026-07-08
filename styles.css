@@ -37,11 +37,22 @@ body {
 }
 
 .nav-logo {
+    position: relative;
     text-decoration: none;
     color: #333;
     font-size: 0.75rem;
     letter-spacing: 0.1rem;
     padding-bottom: 0.25rem;
+}
+
+.nav-logo.active::after {
+    content: "";
+    position: absolute;
+    left: -6%;
+    bottom: -0.4rem;
+    width: 112%;
+    height: 8px;
+    background: url("divider.svg") no-repeat center / 100% 100%;
 }
 
 .nav-menu {
@@ -83,7 +94,9 @@ body {
     padding: 1rem 5rem;
     position: relative;
     min-height: 750px;
-    overflow: hidden;
+    /* No overflow clipping here anymore - the .ink-drag-layer below handles
+       that, with generous headroom above so the hand/ink can move freely,
+       including over the navbar, while still cutting off at the bottom. */
 }
 
 .hero-content {
@@ -134,15 +147,30 @@ body {
     opacity: 0.6;
 }
 
+/* Wraps the ink canvas and draggable hand. Extends well above the hero's
+   own top edge (and above the navbar) and out to both sides, so the hand
+   can be dragged freely in every direction except the bottom, where this
+   layer's own edge lines up exactly with the hero's bottom - keeping the
+   ink/hand from ever being dragged over the featured-work section below.
+   Height is set in JS to track the hero's actual rendered height. */
+.ink-drag-layer {
+    position: absolute;
+    top: -600px;
+    left: -300px;
+    width: calc(100% + 600px);
+    overflow: hidden;
+    z-index: 150; /* above the navbar (100) so the hand can be dragged on top of it */
+    pointer-events: none; /* let clicks pass through to the nav/hero beneath, except on the hand itself */
+}
+
 .hand-gibbon {
     position: absolute;
-    top: 28%;
-    left: 18%;
+    /* top/left are set in JS */
     height: 300px;
-    z-index: 5;
     cursor: grab;
     user-select: none;
     touch-action: none;
+    pointer-events: auto;
 }
 
 .hand-gibbon:active {
@@ -152,11 +180,9 @@ body {
 .ink-canvas {
     position: absolute;
     top: 0;
-    left: -300px;
-    width: calc(100% + 600px);
+    left: 0;
+    width: 100%;
     height: 100%;
-    z-index: 4; /* below hand (5), above gibbon/illustration */
-    pointer-events: none; /* let drags pass through to the hand image */
 }
 
 /* Featured Work Section */
@@ -672,6 +698,11 @@ body {
     color: inherit;
 }
 
+.work-listing-card-media {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
 .work-listing-card-thumb {
     width: 100%;
     aspect-ratio: 4 / 3;
@@ -679,7 +710,6 @@ body {
     border: 1px solid #ddd;
     border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -694,6 +724,24 @@ body {
 a.work-listing-card:hover .work-listing-card-thumb {
     transform: translateY(-4px);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+.work-listing-card-pin {
+    position: absolute;
+    top: -42px;
+    right: -4%;
+    width: 60px;
+    height: auto;
+    opacity: 0;
+    transform: scale(0.6) rotate(-28deg);
+    rotate: 28deg;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.work-listing-card:hover .work-listing-card-pin {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
 }
 
 .work-listing-card-title {
