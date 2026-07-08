@@ -145,7 +145,6 @@ body {
 
 .gibbon {
     height: 750px;
-    opacity: 0.6;
 }
 
 /* Wraps the ink canvas and draggable hand. Extends well above the hero's
@@ -518,7 +517,7 @@ body {
 }
 
 .ballot-button:hover {
-    background-color: #B1B5DF;
+    background-color: #7387B7;
     border: none;
     color: #fff;
 }
@@ -675,7 +674,7 @@ body {
     width: 16px;
     height: 16px;
     border: 2px solid #ddd;
-    border-top-color: #B1B5DF;
+    border-top-color: #7387B7;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
@@ -1183,7 +1182,7 @@ body {
 }
 
 .work-listing-card-meta-soon {
-    color: #B1B5DF;
+    color: #7387B7;
     font-weight: 600;
 }
 

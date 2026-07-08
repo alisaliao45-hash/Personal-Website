@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function drawInkSegment(x1, y1, x2, y2) {
-        ctx.strokeStyle = 'rgba(177, 181, 223, 0.85)';
+        ctx.strokeStyle = 'rgba(115, 135, 183, 0.85)';
         ctx.lineWidth = 2 + Math.random() * 1; // slight thickness variation
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
