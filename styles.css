@@ -10,6 +10,7 @@ html {
     background-size: 500px 500px;
     background-color: #fff;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 body {
@@ -185,82 +186,182 @@ body {
     height: 100%;
 }
 
+/* Me Page */
+.me-section {
+    max-width: 1350px;
+    margin: 3rem auto 0;
+    padding: 1rem 5rem 8rem;
+    position: relative;
+    min-height: 500px;
+}
+
+.me-columns {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.me-bio {
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.me-photo-frame {
+    width: 380px;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    background-color: #efefef;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+.me-illustration {
+    position: absolute;
+    left: 2%;
+    top: 62%;
+    width: 300px;
+    z-index: 1;
+}
+
+.me-arrow-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-left: 500px;
+    margin-top: 70px;
+}
+
+/* Same drag-and-draw mechanic as the homepage hero, scoped to this
+   section: .me-arrow-img is the fixed reference the hand stays anchored
+   to (in place of the gibbon), and .me-hand is the draggable pen. */
+.me-drag-layer {
+    position: absolute;
+    top: -250px;
+    left: -200px;
+    width: calc(100% + 400px);
+    overflow: hidden;
+    z-index: 150;
+    pointer-events: none;
+}
+
+.me-hand {
+    position: absolute;
+    height: 220px;
+    margin-left: 250px;
+    rotate: 15deg;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    pointer-events: auto;
+}
+
+.me-hand:active {
+    cursor: grabbing;
+}
+
+.me-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /* Featured Work Section */
 .featured-work {
     max-width: 1400px;
     margin: 3rem auto;
     padding: 5rem;
+    border-top: 1px solid #ddd;
+    position: relative;
+}
+
+.featured-star {
+    position: absolute;
+    top: 30rem;
+    right: 2rem;
+    width: 300px;
+    rotate: 30deg;
+    height: auto;
+    opacity: 0.7;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .section-title {
-    font-size: 0.9rem;
-    letter-spacing: 0.15rem;
-    margin-bottom: 2rem;
-    border-bottom: 2px solid #7cb342;
-    padding-bottom: 0.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: #1a1a1a;
     display: inline-block;
 }
 
+.featured-divider {
+    display: block;
+    width: 140px;
+    height: auto;
+    margin-top: -4rem;
+}
+
 .work-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 4rem;
     position: relative;
+    width: 860px;
+    height: 560px;
+    margin: 4rem auto;
+    margin-bottom: -2rem;
 }
 
 .work-item {
-    position: relative;
-    height: 300px;
+    position: absolute;
+    width: 340px;
+    height: 430px;
 }
 
 .work-card {
     background-color: white;
     border: 8px solid #ddd;
-    border-bottom-width: 16px;
+    border-bottom-width: 80px;
     height: 100%;
     position: relative;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Red Pins */
+.item-1 {
+    top: 0;
+    left: -50px;
+    transform: rotate(-7deg);
+    z-index: 1;
+}
+
+.item-2 {
+    top: 190px;
+    left: 200px;
+    transform: rotate(5deg);
+    z-index: 2;
+}
+
+.item-3 {
+    top: 40px;
+    left: 600px;
+    transform: rotate(-5deg);
+    z-index: 1;
+}
+
+/* Pushpins */
 .work-pin {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #dc143c;
-    border-radius: 50%;
-    z-index: 10;
-}
-
-.work-pin::before {
-    content: '';
-    position: absolute;
-    width: 2px;
-    height: 15px;
-    background-color: #999;
+    width: 40px;
+    height: auto;
+    top: -20px;
     left: 50%;
-    transform: translateX(-50%);
-    bottom: -15px;
-}
-
-.pin-1 {
-    top: -10px;
-    left: 15%;
-}
-
-.pin-2 {
-    top: 40%;
-    right: -10px;
-}
-
-.pin-3 {
-    bottom: 10%;
-    right: 20%;
-}
-
-.pin-4 {
-    bottom: -10px;
-    right: 10%;
+    transform: translateX(-50%) rotate(-6deg);
+    z-index: 10;
+    pointer-events: none;
 }
 
 /* Footer */
@@ -307,6 +408,13 @@ body {
     color: #1a1a1a;
 }
 
+.project-quote {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
 .project-subtitle {
     font-size: 16px;
     letter-spacing: 0.1rem;
@@ -350,7 +458,7 @@ body {
     object-fit: cover;
     display: block;
     border-radius: 12px;
-    border: 1px solid #666;
+    border: 1px solid #d1d1d1;
 }
 
 .content-section {
@@ -358,7 +466,8 @@ body {
     padding: 1.5rem 0;
 }
 
-#concept {
+#concept,
+#problem {
     margin-bottom: 4rem;
 }
 
@@ -412,6 +521,25 @@ body {
     background-color: #B1B5DF;
     border: none;
     color: #fff;
+}
+
+.ballot-cta-highlight {
+    position: relative;
+    background-color: #e4e4e4;
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    width: 600px;
+    margin: 3.5rem auto;
+}
+
+.ballot-cta-pin {
+    position: absolute;
+    top: -26px;
+    right: 8%;
+    width: 60px;
+    height: auto;
+    transform: rotate(28deg);
+    pointer-events: none;
 }
 
 .project-section-title {
@@ -493,6 +621,15 @@ body {
     color: #1a1a1a;
 }
 
+.cvs-problem-heading {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 7%;
+    color: #1a1a1a;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
 .problem-text {
     font-size: .85rem;
     color: #1a1a1a;
@@ -507,6 +644,10 @@ body {
     color: #1a1a1a;
 }
 
+.approach-question + .approach-question {
+    margin-top: 1.5rem;
+}
+
 .emphasis-text {
     font-size: 1.1rem;
     font-weight: 600;
@@ -517,6 +658,39 @@ body {
     width: 120px;
     height: auto;
     margin: 1.5rem auto;
+}
+
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.05rem;
+    color: #666;
+}
+
+.loading-spinner {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ddd;
+    border-top-color: #B1B5DF;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-error {
+    padding: 1rem 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.05rem;
+    color: #999;
 }
 
 .stats-table-wrapper {
@@ -625,10 +799,34 @@ body {
     margin-bottom: 0;
 }
 
+.feedback-row {
+    display: flex;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.feedback-box {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    width: 500px;
+}
+
+.feedback-box-centered {
+    margin: 0 auto;
+}
+
+.feedback-box .content-list {
+    margin-bottom: 0;
+}
+
 .competitive-analysis-placeholder {
     width: 100%;
     background-color: #d9d9d9;
     border: 1px solid #ccc;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .wireframes-placeholder {
@@ -681,6 +879,209 @@ body {
     display: block;
 }
 
+.problem-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.problem-flow-box {
+    width: 300px;
+    max-width: 100%;
+    background-color: #e4e4e4;
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.03rem;
+    color: #1a1a1a;
+    line-height: 1.6;
+}
+
+.problem-flow-arrow {
+    align-self: center;
+    width: 2px;
+    height: 32px;
+    background-color: #999;
+    margin: 0.5rem 0;
+    position: relative;
+}
+
+.problem-flow-arrow::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #999;
+    border-bottom: 2px solid #999;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.design-flow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.design-flow-item {
+    text-align: center;
+    width: 250px;
+}
+
+.design-flow-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+}
+
+.design-flow-item figcaption {
+    margin-top: 0.75rem;
+}
+
+.design-wide-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+    margin: 1.5rem 0;
+}
+
+.design-pages-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 1rem;
+    align-items: start;
+    margin: 2rem 0;
+}
+
+.design-page figcaption {
+    text-align: left;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.design-page .design-wide-img {
+    margin: 0;
+}
+
+.designs-group {
+    margin-bottom: 3.5rem;
+}
+
+.designs-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Character / Keyframe grids (Lost Stop) */
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 2rem;
+    margin: 2rem 0;
+}
+
+.character-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+}
+
+.character-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+}
+
+.character-age {
+    font-weight: 400;
+    color: #999;
+}
+
+.keyframe-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 2rem;
+    margin: 2rem 0;
+}
+
+.keyframe-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+    margin-bottom: 0.75rem;
+}
+
+/* Masonry-style gallery (Figure Drawings): images pack tightly with no
+   uneven row gaps, since each column flows independently by height. */
+.figure-gallery {
+    column-count: 2;
+    column-gap: 2rem;
+    margin: 2rem 0;
+}
+
+.figure-item {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+}
+
+.figure-item img,
+.figure-item video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+}
+
+.problem-image-row {
+    display: flex;
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.problem-image {
+    flex: 1;
+    text-align: center;
+}
+
+.problem-image-frame {
+    position: relative;
+}
+
+.problem-image img {
+    display: block;
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+}
+
+.problem-image-heading {
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    white-space: nowrap;
+    font-size: 0.75rem;
+    letter-spacing: 0.15rem;
+    color: #1a1a1a;
+    text-transform: uppercase;
+}
+
 /* Work Listing Page */
 .work-listing {
     margin: 3rem 0 6rem;
@@ -721,7 +1122,7 @@ body {
     display: block;
 }
 
-a.work-listing-card:hover .work-listing-card-thumb {
+.work-listing-card:hover .work-listing-card-thumb {
     transform: translateY(-4px);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
 }
@@ -816,6 +1217,14 @@ a.work-listing-card:hover .work-listing-card-thumb {
         padding: 2rem 1.5rem;
     }
 
+    .me-columns {
+        flex-direction: column;
+    }
+
+    .me-photo-frame {
+        width: 100%;
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }
@@ -825,12 +1234,49 @@ a.work-listing-card:hover .work-listing-card-thumb {
     }
 
     .work-grid {
-        grid-template-columns: 1fr;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        max-width: 100%;
+    }
+
+    .work-item {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        max-width: 260px;
+        margin: 0 auto;
     }
 
     .work-listing-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
+    }
+
+    .design-flow-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .feedback-row {
+        flex-direction: column;
+    }
+
+    .design-pages-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .character-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .keyframe-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .figure-gallery {
+        column-count: 1;
     }
 
     .nav-menu {

@@ -13,8 +13,8 @@
             <a href="index.html" class="nav-logo">H O M E</a>
             <ul class="nav-menu">
                 <li><a href="work.html">W O R K</a></li>
-                <li><a href="#art">A R T</a></li>
-                <li><a href="#me">M E</a></li>
+                <li><a href="art.html">A R T</a></li>
+                <li><a href="me.html">M E</a></li>
             </ul>
         </div>
     </nav>
@@ -116,14 +116,20 @@
                             </div>
                         </div>
 
-                        <div class="ballot-cta">
+                        <div class="ballot-cta ballot-cta-highlight">
+                            <img src="pushpin.png" alt="" class="ballot-cta-pin">
                             <h3 class="ballot-cta-text">FINAL PRODUCT</h3>
                             <p class="problem-text">Click here to access the Media Ballot and do some labelling yourself!</p>
                             <a href="https://alisaliao45-hash.github.io/Media-Classifier/" target="_blank" rel="noopener" class="ballot-button">Media Ballot</a>
                         </div>
 
                         <h3 class="research-subtitle">LIVE DATASET</h3>
-                        <div id="mc-stats"></div>
+                        <div id="mc-stats">
+                            <div class="loading-indicator">
+                                <span class="loading-spinner"></span>
+                                <span>Loading live dataset&hellip;</span>
+                            </div>
+                        </div>
                     </div>
 
                     <img src="divider.svg" alt="" class="section-divider">
@@ -159,17 +165,23 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-links">
-            <a href="#email">E M A I L</a>
-            <a href="#tiktok">T I K T O K</a>
-            <a href="#instagram">I N S T A G R A M</a>
+            <a href="mailto:alisaliao45@gmail.com">E M A I L</a>
+            <a href="https://www.instagram.com/serene_dippity?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">I N S T A G R A M</a>
         </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
         async function loadStats() {
-            const res = await fetch("https://media-classifier.onrender.com/stats");
-            const { summary, prompts } = await res.json();
+            let summary, prompts;
+            try {
+                const res = await fetch("https://media-classifier.onrender.com/stats");
+                ({ summary, prompts } = await res.json());
+            } catch (err) {
+                document.getElementById("mc-stats").innerHTML =
+                    `<p class="loading-error">Couldn't load the live dataset right now. It'll retry automatically.</p>`;
+                return;
+            }
 
             const truncate = (str, n) => str && str.length > n ? str.slice(0, n) + "..." : str;
 

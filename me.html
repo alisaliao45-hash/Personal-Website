@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me | Alisa Liao</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">H O M E</a>
+            <ul class="nav-menu">
+                <li><a href="work.html">W O R K</a></li>
+                <li><a href="art.html">A R T</a></li>
+                <li><a href="me.html" class="active">M E</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section class="me-section">
+            <div class="me-columns">
+                <div class="me-bio">
+                    <p class="project-text">Hi I'm Alisa! I'm currently a second year undergrad at UC San Diego studying cognitive science. I'm passionate about design, storytelling, and research, and am always eager to push the bounds of creation with technology.</p>
+                    <p class="project-text">Outside the classroom, you can catch me working on my Webtoon, reading, or learning how to skateboard. I love to meet new people so feel free to reach out through any of the contact options below!</p>
+                </div>
+                <div class="me-photo-frame"></div>
+            </div>
+
+            <div class="me-illustration">
+                <img src="me_arrow.png" alt="&quot;me!&quot; hand-drawn label pointing at the photo" class="me-arrow-img">
+            </div>
+            <div class="me-drag-layer">
+                <canvas class="me-canvas"></canvas>
+                <img src="hand_gibbon.png" alt="Draggable hand illustration" class="me-hand">
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="mailto:alisaliao45@gmail.com">E M A I L</a>
+            <a href="https://www.instagram.com/serene_dippity?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">I N S T A G R A M</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hand = document.querySelector('.me-hand');
+            const section = document.querySelector('.me-section');
+            const dragLayer = document.querySelector('.me-drag-layer');
+            const canvas = document.querySelector('.me-canvas');
+            const anchorImg = document.querySelector('.me-arrow-img');
+            if (!hand || !section || !dragLayer || !canvas || !anchorImg) return;
+
+            const ctx = canvas.getContext('2d');
+
+            const LAYER_TOP_OFFSET = 250;
+            const LAYER_SIDE_OFFSET = 200;
+
+            const INITIAL_LEFT_FRACTION = 0.05;
+            const INITIAL_TOP_FRACTION = 0.63;
+
+            const PEN_TIP_X_FRACTION = 0.85;
+            const PEN_TIP_Y_FRACTION = 0.54;
+
+            let isDragging = false;
+            let offsetX = 0;
+            let offsetY = 0;
+            let lastPenX = null;
+            let lastPenY = null;
+            let handFracX = null;
+            let handFracY = null;
+
+            function captureHandFraction() {
+                const anchorRect = anchorImg.getBoundingClientRect();
+                const handRect = hand.getBoundingClientRect();
+                if (!anchorRect.width || !anchorRect.height) return;
+                handFracX = (handRect.left - anchorRect.left) / anchorRect.width;
+                handFracY = (handRect.top - anchorRect.top) / anchorRect.height;
+            }
+
+            function applyHandFraction() {
+                if (handFracX === null || handFracY === null) return;
+                const layerRect = dragLayer.getBoundingClientRect();
+                const anchorRect = anchorImg.getBoundingClientRect();
+                const newLeft = (anchorRect.left - layerRect.left) + handFracX * anchorRect.width;
+                const newTop = (anchorRect.top - layerRect.top) + handFracY * anchorRect.height;
+                hand.style.left = newLeft + 'px';
+                hand.style.top = newTop + 'px';
+            }
+
+            function sizeDragLayer() {
+                const sectionRect = section.getBoundingClientRect();
+                const footer = document.querySelector('.footer');
+                // Extend the layer's bottom edge down to the footer (instead
+                // of cutting off at the section's own bottom), so the hand
+                // and ink can be dragged over the footer too.
+                const bottomEdge = footer ? footer.getBoundingClientRect().bottom : sectionRect.bottom;
+                dragLayer.style.height = (bottomEdge - sectionRect.top + LAYER_TOP_OFFSET) + 'px';
+            }
+
+            function resizeCanvas() {
+                const prev = canvas.toDataURL();
+                canvas.width = dragLayer.clientWidth;
+                canvas.height = dragLayer.clientHeight;
+                const img = new Image();
+                img.onload = () => ctx.drawImage(img, 0, 0);
+                img.src = prev;
+            }
+
+            function handleResize() {
+                sizeDragLayer();
+                resizeCanvas();
+                applyHandFraction();
+            }
+
+            sizeDragLayer();
+            resizeCanvas();
+            window.addEventListener('resize', handleResize);
+
+            function initHandPosition() {
+                const sectionRect = section.getBoundingClientRect();
+                const layerRect = dragLayer.getBoundingClientRect();
+                const desiredLeft = sectionRect.left + sectionRect.width * INITIAL_LEFT_FRACTION;
+                const desiredTop = sectionRect.top + sectionRect.height * INITIAL_TOP_FRACTION;
+                hand.style.left = (desiredLeft - layerRect.left) + 'px';
+                hand.style.top = (desiredTop - layerRect.top) + 'px';
+                captureHandFraction();
+            }
+
+            if (anchorImg.complete) {
+                initHandPosition();
+            } else {
+                anchorImg.addEventListener('load', initHandPosition);
+            }
+
+            function getPenPosition() {
+                const layerRect = dragLayer.getBoundingClientRect();
+                const imgRect = hand.getBoundingClientRect();
+                const penX = (imgRect.left - layerRect.left) + imgRect.width * PEN_TIP_X_FRACTION;
+                const penY = (imgRect.top - layerRect.top) + imgRect.height * PEN_TIP_Y_FRACTION;
+                return { penX, penY };
+            }
+
+            function drawInkSegment(x1, y1, x2, y2) {
+                ctx.strokeStyle = 'rgba(177, 181, 223, 0.85)';
+                ctx.lineWidth = 2 + Math.random() * 1;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+            }
+
+            const startDrag = (clientX, clientY) => {
+                isDragging = true;
+                // Use the hand's *logical* left/top (what we actually write
+                // back to in moveDrag) rather than its true rendered
+                // position, so any CSS margin/rotate offset on .me-hand
+                // doesn't get double-counted on the next move.
+                const layerRect = dragLayer.getBoundingClientRect();
+                const currentLeft = parseFloat(hand.style.left) || 0;
+                const currentTop = parseFloat(hand.style.top) || 0;
+                offsetX = clientX - layerRect.left - currentLeft;
+                offsetY = clientY - layerRect.top - currentTop;
+                hand.style.cursor = 'grabbing';
+
+                const { penX, penY } = getPenPosition();
+                lastPenX = penX;
+                lastPenY = penY;
+            };
+
+            const moveDrag = (clientX, clientY) => {
+                if (!isDragging) return;
+                const layerRect = dragLayer.getBoundingClientRect();
+                const newLeft = clientX - layerRect.left - offsetX;
+                const newTop = clientY - layerRect.top - offsetY;
+
+                hand.style.left = newLeft + 'px';
+                hand.style.top = newTop + 'px';
+
+                const { penX, penY } = getPenPosition();
+                if (lastPenX !== null) {
+                    drawInkSegment(lastPenX, lastPenY, penX, penY);
+                }
+                lastPenX = penX;
+                lastPenY = penY;
+            };
+
+            const endDrag = () => {
+                isDragging = false;
+                lastPenX = null;
+                lastPenY = null;
+                hand.style.cursor = 'grab';
+                captureHandFraction();
+            };
+
+            hand.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                startDrag(e.clientX, e.clientY);
+            });
+            document.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
+            document.addEventListener('mouseup', endDrag);
+
+            hand.addEventListener('touchstart', (e) => {
+                const touch = e.touches[0];
+                startDrag(touch.clientX, touch.clientY);
+            });
+            document.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const touch = e.touches[0];
+                moveDrag(touch.clientX, touch.clientY);
+            });
+            document.addEventListener('touchend', endDrag);
+
+            section.addEventListener('dblclick', () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            });
+        });
+    </script>
+</body>
+</html>
