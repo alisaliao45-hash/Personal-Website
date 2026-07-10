@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dating Apps &amp; Dating Shows | Alisa Liao</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">H O M E</a>
+            <ul class="nav-menu">
+                <li><a href="work.html" class="active">W O R K</a></li>
+                <li><a href="art.html">A R T</a></li>
+                <li><a href="me.html">M E</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="project-title">DATING APPS &amp; DATING SHOWS</h1>
+            <p class="project-subtitle">INVESTIGATING THE RELATIONSHIP BETWEEN DATING APP USAGE AND DATING SHOW POPULARITY</p>
+
+            <!-- Project Meta -->
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">TYPE</span>
+                    <span class="meta-value">Group Project</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">ROLE</span>
+                    <span class="meta-value">Data Curation, Analysis, Conceptualization</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">TOOLS</span>
+                    <span class="meta-value">Python, Pandas, Seaborn</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">TIMELINE</span>
+                    <span class="meta-value">6 Weeks</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero Image -->
+        <section class="hero-image">
+            <div class="image-placeholder">
+                <img src="dating_project_images/rating_vs_viewership_by_show.png" alt="Scatterplot of average rating vs. number of viewers, colored by show, with OLS best-fit lines" class="hero-img">
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section class="content-section problem-section">
+
+            <div class="section-content">
+                <div class="left-column">
+                    <div class="section-header">
+                        <a href="work.html" class="back-link">← BACK TO WORK</a>
+                    </div>
+                    <ul class="approach-list">
+                        <li><a href="#abstract" data-nav-link>ABSTRACT</a></li>
+                        <li><a href="#background" data-nav-link>BACKGROUND</a></li>
+                        <li><a href="#hypothesis" data-nav-link>HYPOTHESIS</a></li>
+                        <li><a href="#eda" data-nav-link>EXPLORATORY ANALYSIS</a></li>
+                        <li><a href="#analysis" data-nav-link>REGRESSION ANALYSIS</a></li>
+                        <li><a href="#discussion" data-nav-link>DISCUSSION</a></li>
+                        <li><a href="#ethics" data-nav-link>ETHICS</a></li>
+                    </ul>
+                </div>
+
+                <div class="right-column">
+                    <div id="abstract">
+                        <h2 class="project-section-title">ABSTRACT</h2>
+                        <p class="project-text">This project investigates whether the popularity of U.S. reality dating shows (measured by their viewership and ratings in each year) is associated with dating app activity (measured by their revenue and user counts each year) in the United States from 2019 to 2026. Prior research suggests that both dating shows and dating apps share similar sociocultural sentiments regarding romance and relationships, and we sought to see if this association can also be reflected by the data.</p>
+                        <p class="project-text">We focused on three specific major dating shows &mdash; Love Island USA, The Bachelor, and Love Is Blind &mdash; and we examined their ratings and viewership along with annual user count and annual revenue for Tinder, Bumble, and Hinge. After some exploratory analysis, we found issues with multicollinearity, autocorrelation, and skewness in our datasets, which we fixed by segregating potentially correlating predictors, incorporating Newey-West robust standard errors, and applying log transformations, respectively.</p>
+                        <p class="project-text">For our main analysis, we applied 12 OLS regression models (combinations of our 6 predictor variables and 2 prediction variables) to test whether dating show popularity could predict dating app user counts and revenue. Our results suggest that there is typically a positive relationship between dating show popularity and dating app popularity, though this was not true for every show, and it often depended on whether we measured dating app popularity based on viewership data or ratings data. The Bachelor consistently produced the strongest results.</p>
+                        <p class="project-text">Our findings provide preliminary evidence that dating shows and dating apps may reflect similar social interests and attitudes toward dating. However, our study is limited by a small sample size and the availability of public data. Future research using larger datasets and additional measures of dating behavior would help determine whether this relationship remains consistent over time.</p>
+
+                        <div class="feedback-box feedback-box-centered">
+                            <h3 class="research-subtitle">Authors</h3>
+                            <ul class="content-list">
+                                <li>Anisha Ramesh &mdash; Data curation, Project administration, Visualization, Analysis, Writing</li>
+                                <li>Alisa Liao &mdash; Data curation, Analysis, Conceptualization, Writing</li>
+                                <li>Junyou Feng &mdash; Background research, Methodology, Analysis, Writing</li>
+                                <li>Derek Xu &mdash; Background research, Data curation, Methodology, Analysis, Writing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <img src="divider.svg" alt="" class="section-divider">
+
+                    <div class="content-section approach-section" id="background">
+                        <h2 class="project-section-title">BACKGROUND</h2>
+                        <p class="project-text">The things that happen in dating shows are not like actual dating. As a form of reality TV that wishes to attract a large, engaged audience, it's inevitable that producers and writers of dating shows artificially infuse as much drama and tension as possible into each episode and season. As early as 2007, a study already found that greater viewing of dating shows strongly predicts the tendency to believe that "men are sex-driven," "dating is a game," and "women are sex objects." A study looking at a more recent dating show, "Singles Inferno," also found that the show perpetuates gender stereotypes and unrealistic beauty standards.</p>
+                        <p class="project-text">Dating apps, such as Tinder, Hinge, and Bumble, have also played a large role in the modern dating scene. The Pew Research Center finds that 30% of Americans have used dating apps at least once, and this number is particularly higher for younger and queer people. However, just like dating shows, dating apps have also proven to be quite problematic &mdash; over half of young women (18&ndash;34) report negative interactions while using dating apps, and other studies find that dating app usage correlates with substance abuse and insecurity about physical appearance.</p>
+                        <p class="project-text">Our project is motivated by the connections we see between dating shows and dating apps: the sexualization of women, superficial perceptions of romantic connection, and the perpetuation of unrealistic beauty standards. We chose three shows that are relatively diverse in their premises and values &mdash; Love Island USA magnifies how dating is messy and full of drama, The Bachelor magnifies how dating is competitive, and Love Is Blind removes physical appearance from the equation entirely. If we were to find correlations between certain shows and dating app usage, but not others, there is an argument to be made that the values underlying those shows specifically are more tied to dating app usage.</p>
+                    </div>
+
+                    <img src="divider.svg" alt="" class="section-divider">
+
+                    <div class="content-section approach-section" id="hypothesis">
+                        <h2 class="project-section-title">HYPOTHESIS</h2>
+                        <h3 class="approach-question">WE EXPECT A POSITIVE RELATIONSHIP BETWEEN THE POPULARITY OF U.S. REALITY DATING SHOWS AND DATING APP ACTIVITY IN THE U.S. FROM 2019 TO 2026.</h3>
+                        <p class="project-text">Specifically, when a season has higher average viewership and ratings, we predict that user counts and annual revenue for apps like Tinder, Bumble, and Hinge will also increase in the same year. We make this prediction because dating shows and dating apps seem to share similar underlying sociocultural sentiments, and dating shows may make dating more visible and normalized to viewers, making them wish to personally engage in dating behavior themselves.</p>
+                        <p class="project-text">However, we do not expect this relationship to be perfectly and consistently apparent across all years, since other existing factors &mdash; like economic conditions or app-specific changes &mdash; may also affect user growth and revenue.</p>
+                    </div>
+
+                    <img src="divider.svg" alt="" class="section-divider">
+
+                    <div class="content-section research-section" id="eda">
+                        <h2 class="project-section-title">EXPLORATORY DATA ANALYSIS</h2>
+
+                        <h3 class="research-subtitle">Viewership and Ratings Over Time</h3>
+                        <p class="project-text">To visualize the ratings for the three shows on a broader scale, we grouped show ratings by year of airing. It seems like The Bachelor and Love Island USA (except its most recent season) got better over time, while Love Is Blind remained relatively stable.</p>
+                        <img src="dating_project_images/ratings_over_time.png" alt="Line plot of reality TV ratings over time for the three shows" class="design-wide-img">
+                        <p class="project-text">We observe that Love Is Blind had a large increase in viewership in 2023, while The Bachelor slowly lost viewership over time. Love Island USA started off with the lowest viewership and had a small increase in 2022.</p>
+                        <img src="dating_project_images/viewership_over_time.png" alt="Line plot of reality TV viewership over time for the three shows" class="design-wide-img">
+
+                        <p class="project-text">Next, we made a comparative box plot per show, with one box plot per season.</p>
+                        <div class="chart-grid-3">
+                            <figure class="chart-item">
+                                <img src="dating_project_images/love_island_ratings_by_season.png" alt="Love Island USA ratings by season box plot">
+                            </figure>
+                            <figure class="chart-item">
+                                <img src="dating_project_images/bachelor_ratings_by_season.png" alt="The Bachelor ratings by season box plot">
+                            </figure>
+                            <figure class="chart-item">
+                                <img src="dating_project_images/love_is_blind_ratings_by_season.png" alt="Love Is Blind ratings by season box plot">
+                            </figure>
+                        </div>
+                        <p class="project-text">Love Island USA appears generally consistent through its first six seasons, with season 7 dropping sharply. The Bachelor's ratings move in an almost sinusoidal pattern across seasons, and Love Is Blind stays relatively consistent, with season 4 showing the widest range.</p>
+
+                        <h3 class="research-subtitle">Relationship Between Viewership and Ratings</h3>
+                        <p class="project-text">We tested for a relationship between a show's viewership and its ratings for a given season, expecting a "better" show (higher ratings) to attract more viewers. This also matters for our later modeling: if viewership and ratings are correlated, we can't use both as predictors in the same model.</p>
+                        <div class="chart-grid-2">
+                            <figure class="chart-item">
+                                <img src="dating_project_images/rating_vs_viewership_combined.png" alt="Scatterplot of rating vs viewership across all shows combined, with OLS best-fit line">
+                            </figure>
+                            <figure class="chart-item">
+                                <img src="dating_project_images/rating_vs_viewership_by_show.png" alt="Scatterplot of rating vs viewership colored by show, with OLS best-fit lines">
+                            </figure>
+                        </div>
+                        <p class="project-text">This was unexpected: for all three shows, as well as combined, a season's ratings and viewership are actually <em>negatively</em> correlated &mdash; a "better" show ends up attracting fewer viewers. One possible explanation relates to systematic bias in who rates a show: perhaps only a select, more dedicated subset of viewers rate the less popular seasons, and their dedication leads to more favorable ratings.</p>
+
+                        <h3 class="research-subtitle">Dating App Usage Over Time</h3>
+                        <p class="project-text">Both Bumble and Hinge steadily increased in users over the years, with no sudden explosion or period of stagnation. As user counts increased, revenue increased in step &mdash; Tinder, absent from the user-count data, makes considerably more revenue than the other two apps.</p>
+                        <div class="chart-grid-2">
+                            <figure class="chart-item">
+                                <img src="dating_project_images/dating_app_users_over_time.png" alt="Line plot of dating app users over time">
+                            </figure>
+                            <figure class="chart-item">
+                                <img src="dating_project_images/dating_app_revenue_over_time.png" alt="Line plot of dating app revenue over time">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <img src="divider.svg" alt="" class="section-divider">
+
+                    <div class="content-section designs-section" id="analysis">
+                        <h2 class="project-section-title">REGRESSION ANALYSIS</h2>
+
+                        <h3 class="research-subtitle">Standard OLS Regression</h3>
+                        <p class="project-text">We first tried standard OLS regression to see the immediate relationship between dating show popularity and dating app popularity. Results were highly insignificant, with all p-values far above .05 and extremely low r&sup2; values. However, high Durbin-Watson values for both users and revenue (0.808 and 0.638) suggested strong positive autocorrelation &mdash; expected, since our data follows the progression of time. Combined with the multicollinearity between viewership and ratings, this meant standard OLS wasn't the right tool for our data.</p>
+
+                        <h3 class="research-subtitle">Log Transformations &amp; Newey-West Standard Errors</h3>
+                        <p class="project-text">We checked each dataset for skewness to determine whether a log transformation was needed. Show viewership was clearly right-skewed and benefited from a log transform; ratings and app users were already reasonably distributed; and revenue, while somewhat skewed, actually became <em>more</em> skewed (in the other direction) after a log transform, so we preserved its original form.</p>
+                        <div class="chart-grid-3">
+                            <figure class="chart-item">
+                                <img src="dating_project_images/viewership_before_log.png" alt="Viewership distribution before log transformation">
+                            </figure>
+                            <figure class="chart-item">
+                                <img src="dating_project_images/viewership_after_log.png" alt="Viewership distribution after log transformation">
+                            </figure>
+                            <figure class="chart-item">
+                                <img src="dating_project_images/ratings_distribution.png" alt="Ratings distribution">
+                            </figure>
+                            <figure class="chart-item">
+                                <img src="dating_project_images/revenue_before_log.png" alt="Revenue distribution before log transformation">
+                            </figure>
+                            <figure class="chart-item">
+                                <img src="dating_project_images/revenue_after_log.png" alt="Revenue distribution after log transformation">
+                            </figure>
+                            <figure class="chart-item">
+                                <img src="dating_project_images/users_distribution.png" alt="Dating app users distribution">
+                            </figure>
+                        </div>
+                        <p class="project-text">Our data is also a time series spanning 2019&ndash;2026, which causes autocorrelation &mdash; a violation of standard OLS's independence assumption. To address this, we applied Newey-West robust standard errors, which stabilize variance and account for autocorrelation. To avoid multicollinearity, we never fit a show's viewership and ratings into the same model.</p>
+
+                        <h3 class="research-subtitle">Dating App Revenue Model</h3>
+                        <p class="project-text">We fit six separate OLS models &mdash; one per show-popularity predictor &mdash; against total dating app revenue.</p>
+                        <div class="results-table-wrapper">
+                            <table class="results-table">
+                                <thead>
+                                    <tr><th>Predictor</th><th>Adjusted R&sup2;</th><th>P-value</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>log viewers &mdash; The Bachelor</td><td>0.905</td><td>&lt;0.001</td></tr>
+                                    <tr><td>rating &mdash; The Bachelor</td><td>0.413</td><td>&lt;0.001</td></tr>
+                                    <tr><td>log viewers &mdash; Love Is Blind</td><td>0.350</td><td>&lt;0.001</td></tr>
+                                    <tr><td>rating &mdash; Love Is Blind</td><td>&minus;0.143</td><td>0.318</td></tr>
+                                    <tr><td>rating &mdash; Love Island USA</td><td>&minus;0.178</td><td>0.658</td></tr>
+                                    <tr><td>log viewers &mdash; Love Island USA</td><td>n/a</td><td>&mdash;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="project-text">The Bachelor's viewership and rating produced the highest adjusted R&sup2; for dating app revenue, suggesting a positive correlation between The Bachelor's popularity and dating app revenue. All shows except Love Island USA produced p-values below 0.05. For a sanity check, we plotted the best model's predictor (The Bachelor's log viewership) against revenue, and contrasted it with the worst non-null model (Love Island USA's rating).</p>
+                        <div class="chart-grid-2">
+                            <figure class="chart-item">
+                                <img src="dating_project_images/bachelor_viewership_vs_revenue.png" alt="The Bachelor log viewership vs total revenue scatterplot">
+                            </figure>
+                            <figure class="chart-item">
+                                <img src="dating_project_images/love_island_rating_vs_revenue.png" alt="Love Island USA rating vs total revenue scatterplot">
+                            </figure>
+                        </div>
+                        <p class="project-text">This matches expectations: The Bachelor's viewership shows a clear linear pattern against revenue, consistent with its high R&sup2;, while Love Island USA's ratings show a fairly random pattern, consistent with its low R&sup2;.</p>
+
+                        <h3 class="research-subtitle">Dating App Users Model</h3>
+                        <p class="project-text">We repeated the same process, this time predicting total dating app user counts.</p>
+                        <div class="results-table-wrapper">
+                            <table class="results-table">
+                                <thead>
+                                    <tr><th>Predictor</th><th>Adjusted R&sup2;</th><th>P-value</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>log viewers &mdash; The Bachelor</td><td>0.799</td><td>&lt;0.001</td></tr>
+                                    <tr><td>log viewers &mdash; Love Is Blind</td><td>0.757</td><td>&lt;0.001</td></tr>
+                                    <tr><td>rating &mdash; The Bachelor</td><td>0.477</td><td>&lt;0.001</td></tr>
+                                    <tr><td>rating &mdash; Love Island USA</td><td>&minus;0.200</td><td>0.974</td></tr>
+                                    <tr><td>rating &mdash; Love Is Blind</td><td>&minus;0.215</td><td>0.572</td></tr>
+                                    <tr><td>log viewers &mdash; Love Island USA</td><td>n/a</td><td>&mdash;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="project-text">The Bachelor's viewership again produced the highest adjusted R&sup2;, closely followed by Love Is Blind's viewership. Again, every show except Love Island USA produced a p-value below 0.05.</p>
+                        <div class="chart-grid-2">
+                            <figure class="chart-item">
+                                <img src="dating_project_images/bachelor_viewership_vs_users.png" alt="The Bachelor log viewership vs total users scatterplot">
+                            </figure>
+                            <figure class="chart-item">
+                                <img src="dating_project_images/love_is_blind_rating_vs_users.png" alt="Love Is Blind rating vs total users scatterplot">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <img src="divider.svg" alt="" class="section-divider">
+
+                    <div class="content-section conclusion-section" id="discussion">
+                        <h2 class="project-section-title">DISCUSSION</h2>
+                        <p class="project-text">We found that most models identify statistically significant relationships between dating app popularity and dating show popularity, and this relationship is particularly strong for The Bachelor. One possible explanation is that The Bachelor's premise &mdash; one person dating and choosing among many contestants &mdash; most closely parallels the competitive, choose-among-many nature of dating apps themselves.</p>
+                        <p class="project-text">We also considered whether time itself was a confound, since both dating app metrics and dating show metrics could simply reflect the passage of time. However, our show-popularity measures don't increase consistently over time the way app revenue and usage naturally accumulate, suggesting time alone doesn't explain the relationship.</p>
+                        <h3 class="research-subtitle">Limitations</h3>
+                        <ul class="content-list">
+                            <li>Our sample size is small (14 yearly observations), which severely limits the statistical validity of any regression model we run.</li>
+                            <li>Our operationalizations of "popularity" may be imperfect &mdash; people can be influenced by dating culture without ever rating a show or paying for an app.</li>
+                            <li>Ratings data may be biased, since only the most dedicated fans tend to actively rate shows and episodes.</li>
+                            <li>Shared sociocultural sentiment might not fully explain the correlations we observe, even though we favor that interpretation.</li>
+                        </ul>
+                        <p class="project-text">Future research could investigate the three-way relationship between sociocultural attitudes toward dating, dating app usage, and dating show viewership more directly &mdash; perhaps through surveys rather than aggregated metrics like ours &mdash; and would benefit from a larger, more resourced dataset than we had access to.</p>
+                    </div>
+
+                    <img src="divider.svg" alt="" class="section-divider">
+
+                    <div class="content-section conclusion-section" id="ethics">
+                        <h2 class="project-section-title">ETHICS</h2>
+                        <p class="project-text">All data used was existing, public, and anonymous &mdash; no human subjects were surveyed or recruited. We selected this topic because we suspected dating apps and dating shows share a sense of superficiality, and we were careful to acknowledge that this framing itself carries an implicit judgment worth being transparent about.</p>
+                        <p class="project-text">We also considered honest representation: a similar-looking pattern between dating app and dating show popularity could imply causation it doesn't support, and may instead reflect an unaccounted confound (for example, COVID-19's effect on both media consumption and app usage). We do not believe this project has any major negative ethical implications, and we encourage healthy skepticism when reading our results.</p>
+                        <p class="project-text"><a href="https://github.com/COGS108/Group-SP26-062.git" target="_blank" rel="noopener" class="inline-link">Find the actual code here →</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="mailto:alisaliao45@gmail.com">E M A I L</a>
+            <a href="https://www.instagram.com/serene_dippity?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">I N S T A G R A M</a>
+            <a href="AlisaLiaoResume.pdf" target="_blank" rel="noopener">C V</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const navLinks = document.querySelectorAll('[data-nav-link]');
+        const navSections = Array.from(navLinks)
+            .map(link => document.getElementById(link.getAttribute('href').slice(1)))
+            .filter(Boolean);
+
+        const setActiveLink = (id) => {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            });
+        };
+
+        const intersecting = new Map();
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                intersecting.set(entry.target.id, entry.isIntersecting ? entry.boundingClientRect.top : null);
+            });
+
+            const visible = navSections
+                .filter(section => intersecting.get(section.id) !== null && intersecting.get(section.id) !== undefined)
+                .sort((a, b) => intersecting.get(a.id) - intersecting.get(b.id));
+
+            if (visible.length > 0) {
+                setActiveLink(visible[0].id);
+            }
+        }, { rootMargin: '-100px 0px -70% 0px', threshold: 0 });
+
+        navSections.forEach(section => sectionObserver.observe(section));
+
+        window.addEventListener('scroll', () => {
+            const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+            if (atBottom) {
+                setActiveLink(navSections[navSections.length - 1].id);
+            }
+        }, { passive: true });
+    </script>
+</body>
+</html>

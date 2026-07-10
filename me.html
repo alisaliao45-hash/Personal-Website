@@ -27,7 +27,7 @@
                     <p class="project-text">Hi I'm Alisa! I'm currently a second year undergrad at UC San Diego studying cognitive science. I'm passionate about design, storytelling, and research, and am always eager to push the bounds of creation with technology.</p>
                     <p class="project-text">Outside the classroom, you can catch me working on my Webtoon, reading, or learning how to skateboard. I love to meet new people so feel free to reach out through any of the contact options below!</p>
                 </div>
-                <div class="me-photo-frame"></div>
+                <div class="me-photo-frame"><img src="linkedin.png" alt="Photo" class="me-photo"></div>
             </div>
 
             <div class="me-illustration">
@@ -171,7 +171,6 @@
                 const currentTop = parseFloat(hand.style.top) || 0;
                 offsetX = clientX - layerRect.left - currentLeft;
                 offsetY = clientY - layerRect.top - currentTop;
-                hand.style.cursor = 'grabbing';
 
                 const { penX, penY } = getPenPosition();
                 lastPenX = penX;
@@ -199,7 +198,6 @@
                 isDragging = false;
                 lastPenX = null;
                 lastPenY = null;
-                hand.style.cursor = 'grab';
                 captureHandFraction();
             };
 

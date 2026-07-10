@@ -127,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = handGibbon.getBoundingClientRect();
         offsetX = clientX - rect.left;
         offsetY = clientY - rect.top;
-        handGibbon.style.cursor = 'grabbing';
 
         const { penX, penY } = getPenPosition();
         lastPenX = penX;
@@ -159,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         isDragging = false;
         lastPenX = null;
         lastPenY = null;
-        handGibbon.style.cursor = 'grab';
         captureHandFraction();
     };
 
@@ -186,5 +184,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // Double-click the hero section to clear the ink trail
     hero.addEventListener('dblclick', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+});
+
+// Custom cursor: a ring that follows the pointer and fills from the bottom
+// like rising paint whenever it's over a link or the draggable hand
+// illustrations (see the .custom-cursor rules in styles.css).
+document.addEventListener('DOMContentLoaded', () => {
+    const HOVER_SELECTOR = 'a, .hand-gibbon, .me-hand';
+
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    const fill = document.createElement('div');
+    fill.className = 'custom-cursor-fill';
+    cursor.appendChild(fill);
+    document.body.appendChild(cursor);
+
+    let rafId = null;
+    let pendingX = 0;
+    let pendingY = 0;
+
+    function applyCursorPosition() {
+        cursor.style.transform = `translate(${pendingX - 24}px, ${pendingY - 24}px)`;
+        rafId = null;
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        pendingX = e.clientX;
+        pendingY = e.clientY;
+        cursor.classList.add('is-visible');
+        if (rafId === null) {
+            rafId = requestAnimationFrame(applyCursorPosition);
+        }
+        const hoverTarget = e.target.closest && e.target.closest(HOVER_SELECTOR);
+        cursor.classList.toggle('is-hover', !!hoverTarget);
+    });
+
+    document.addEventListener('mouseleave', () => {
+        cursor.classList.remove('is-visible');
     });
 });

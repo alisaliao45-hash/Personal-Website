@@ -18,6 +18,46 @@ body {
     background-color: transparent;
     color: #333;
     line-height: 1.6;
+    cursor: none;
+}
+
+a {
+    cursor: none;
+}
+
+/* Custom paint-fill cursor: a ring that follows the pointer (positioned via
+   script.js) and fills from the bottom like rising paint whenever the
+   pointer is over a link or the draggable hand illustrations. */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #7387B7;
+    box-sizing: border-box;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.custom-cursor.is-visible {
+    opacity: 1;
+}
+
+.custom-cursor-fill {
+    position: absolute;
+    inset: 0;
+    background-color: #7387B7;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.custom-cursor.is-hover .custom-cursor-fill {
+    transform: translateY(0%);
 }
 
 /* Navigation */
@@ -167,14 +207,10 @@ body {
     position: absolute;
     /* top/left are set in JS */
     height: 300px;
-    cursor: grab;
+    cursor: none;
     user-select: none;
     touch-action: none;
     pointer-events: auto;
-}
-
-.hand-gibbon:active {
-    cursor: grabbing;
 }
 
 .ink-canvas {
@@ -215,7 +251,12 @@ body {
     aspect-ratio: 1 / 1;
     flex-shrink: 0;
     background-color: #efefef;
-    border: 1px solid #ddd;
+}
+
+.me-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 12px;
 }
 
@@ -253,14 +294,10 @@ body {
     height: 220px;
     margin-left: 250px;
     rotate: 15deg;
-    cursor: grab;
+    cursor: none;
     user-select: none;
     touch-action: none;
     pointer-events: auto;
-}
-
-.me-hand:active {
-    cursor: grabbing;
 }
 
 .me-canvas {
@@ -322,12 +359,61 @@ body {
 }
 
 .work-card {
+    display: block;
     background-color: white;
-    border: 8px solid #ddd;
+    border: 8px solid #fff;
     border-bottom-width: 80px;
     height: 100%;
     position: relative;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.work-item:hover {
+    z-index: 20;
+}
+
+.work-item:hover .work-card {
+    transform: scale(1.08);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+}
+
+.work-card-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.work-card-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -72px;
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    text-align: center;
+    padding: 0 0.5rem;
+}
+
+.work-card-caption-title {
+    font-size: 0.8rem;
+    letter-spacing: 0.06rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.work-card-caption-subtitle {
+    font-size: 0.65rem;
+    letter-spacing: 0.04rem;
+    color: #999;
 }
 
 .item-1 {
@@ -488,6 +574,18 @@ body {
 
 .back-link:hover {
     opacity: 0.6;
+}
+
+.inline-link {
+    color: #7387B7;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+}
+
+.inline-link:hover {
+    opacity: 0.7;
 }
 
 .ballot-cta {
@@ -772,6 +870,41 @@ body {
     margin-left: 1rem;
 }
 
+.results-table-wrapper {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.results-table th,
+.results-table td {
+    text-align: left;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    white-space: nowrap;
+}
+
+.results-table th {
+    font-size: 0.7rem;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    color: #999;
+    font-weight: 600;
+}
+
+.results-table td {
+    color: #1a1a1a;
+}
+
+.results-table tbody tr:first-child td {
+    font-weight: 600;
+}
+
 .features-box {
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -818,6 +951,51 @@ body {
 
 .feedback-box .content-list {
     margin-bottom: 0;
+}
+
+.ps-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 1.5rem 0 0.75rem;
+}
+
+.ps-header span {
+    font-size: 0.7rem;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    color: #999;
+    text-align: center;
+}
+
+.ps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.ps-pair {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.ps-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+}
+
+.ps-box p {
+    margin: 0;
+}
+
+.ps-arrow {
+    font-size: 1.25rem;
+    color: #999;
 }
 
 .competitive-analysis-placeholder {
@@ -938,6 +1116,36 @@ body {
     border: 1px solid #ccc;
 }
 
+/* Chart grids (data-viz case studies): unlike .design-flow-grid, images
+   fill their column (no fixed width cap) with a tighter gap, so multi-chart
+   rows use more of the available width. */
+.chart-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.chart-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.chart-item {
+    text-align: center;
+    width: 100%;
+}
+
+.chart-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+}
+
 .design-flow-item figcaption {
     margin-top: 0.75rem;
 }
@@ -1009,8 +1217,12 @@ body {
 .keyframe-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem 2rem;
+    gap: 1rem;
     margin: 2rem 0;
+}
+
+.keyframe-item {
+    margin: 0;
 }
 
 .keyframe-img {
@@ -1019,7 +1231,12 @@ body {
     height: auto;
     border-radius: 16px;
     border: 1px solid #ccc;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.keyframe-grid-featured {
+    grid-template-columns: 2.2fr 1fr;
+    align-items: start;
 }
 
 /* Masonry-style gallery (Figure Drawings): images pack tightly with no
@@ -1258,6 +1475,14 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .chart-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
     .feedback-row {
         flex-direction: column;
     }
@@ -1272,6 +1497,17 @@ body {
 
     .keyframe-grid {
         grid-template-columns: 1fr;
+    }
+
+    .ps-header,
+    .ps-pair {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .ps-arrow {
+        transform: rotate(90deg);
     }
 
     .figure-gallery {
