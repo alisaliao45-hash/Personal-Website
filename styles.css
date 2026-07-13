@@ -25,19 +25,16 @@ a {
     cursor: none;
 }
 
-/* Custom paint-fill cursor: a ring that follows the pointer (positioned via
-   script.js) and fills from the bottom like rising paint whenever the
-   pointer is over a link or the draggable hand illustrations. */
+/* Custom cursor: a ring that follows the pointer. The outer element is
+   positioned via script.js (transform: translate), so the hover grow/fill
+   effect lives on the inner ring instead, to avoid both trying to control
+   `transform` at once. */
 .custom-cursor {
     position: fixed;
     top: 0;
     left: 0;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 2px solid #7387B7;
-    box-sizing: border-box;
-    overflow: hidden;
+    width: 24px;
+    height: 24px;
     pointer-events: none;
     z-index: 9999;
     opacity: 0;
@@ -48,16 +45,18 @@ a {
     opacity: 1;
 }
 
-.custom-cursor-fill {
-    position: absolute;
-    inset: 0;
-    background-color: #7387B7;
-    transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+.custom-cursor-ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #7387B7;
+    box-sizing: border-box;
+    transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
-.custom-cursor.is-hover .custom-cursor-fill {
-    transform: translateY(0%);
+.custom-cursor.is-hover .custom-cursor-ring {
+    transform: scale(1.35);
+    background-color: #7387B7;
 }
 
 /* Navigation */

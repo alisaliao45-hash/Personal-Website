@@ -97,11 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
         captureHandFraction();
     }
 
-    if (gibbonImg.complete) {
-        initHandPosition();
-    } else {
-        gibbonImg.addEventListener('load', initHandPosition);
-    }
+    // Wait for every resource on the page (not just the gibbon image) to
+    // finish loading, then give layout two frames to settle (e.g. a
+    // scrollbar appearing once the final page height is known can shift
+    // .hero horizontally) before measuring where to place the hand.
+    window.addEventListener('load', () => {
+        requestAnimationFrame(() => requestAnimationFrame(initHandPosition));
+    });
 
     function getPenPosition() {
         const layerRect = dragLayer.getBoundingClientRect();
@@ -187,17 +189,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Custom cursor: a ring that follows the pointer and fills from the bottom
-// like rising paint whenever it's over a link or the draggable hand
-// illustrations (see the .custom-cursor rules in styles.css).
+// Custom cursor: a ring that follows the pointer and turns blue over links
+// or the draggable hand illustrations (see the .custom-cursor rules in
+// styles.css).
 document.addEventListener('DOMContentLoaded', () => {
     const HOVER_SELECTOR = 'a, .hand-gibbon, .me-hand';
 
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
-    const fill = document.createElement('div');
-    fill.className = 'custom-cursor-fill';
-    cursor.appendChild(fill);
+    const ring = document.createElement('div');
+    ring.className = 'custom-cursor-ring';
+    cursor.appendChild(ring);
     document.body.appendChild(cursor);
 
     let rafId = null;
@@ -205,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let pendingY = 0;
 
     function applyCursorPosition() {
-        cursor.style.transform = `translate(${pendingX - 24}px, ${pendingY - 24}px)`;
+        cursor.style.transform = `translate(${pendingX - 12}px, ${pendingY - 12}px)`;
         rafId = null;
     }
 

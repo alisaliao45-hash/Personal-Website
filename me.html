@@ -135,11 +135,14 @@
                 captureHandFraction();
             }
 
-            if (anchorImg.complete) {
-                initHandPosition();
-            } else {
-                anchorImg.addEventListener('load', initHandPosition);
-            }
+            // Wait for every resource on the page (not just the anchor
+            // image) to finish loading, then give layout two frames to
+            // settle (e.g. a scrollbar appearing once the final page
+            // height is known can shift .me-section horizontally) before
+            // measuring where to place the hand.
+            window.addEventListener('load', () => {
+                requestAnimationFrame(() => requestAnimationFrame(initHandPosition));
+            });
 
             function getPenPosition() {
                 const layerRect = dragLayer.getBoundingClientRect();
