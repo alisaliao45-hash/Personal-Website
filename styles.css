@@ -386,6 +386,10 @@ a {
     object-fit: cover;
 }
 
+.work-card-img-contain {
+    object-fit: contain;
+}
+
 .work-card-caption {
     position: absolute;
     left: 0;
@@ -587,6 +591,28 @@ a {
     opacity: 0.7;
 }
 
+.citation-link {
+    color: #7387B7;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(115, 135, 183, 0.4);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.citation-link:hover {
+    border-bottom-color: #7387B7;
+    background-color: rgba(115, 135, 183, 0.1);
+}
+
+.source-item {
+    scroll-margin-top: 110px;
+}
+
+.citation-link:target,
+.source-item:target {
+    background-color: rgba(115, 135, 183, 0.15);
+    border-radius: 4px;
+}
+
 .ballot-cta {
     text-align: center;
     margin: 2.5rem 0;
@@ -649,7 +675,7 @@ a {
 
 .section-content {
     display: grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 250px minmax(0, 1fr);
     gap: 5rem;
     align-items: flex-start;
 }
@@ -901,6 +927,40 @@ a {
 }
 
 .results-table tbody tr:first-child td {
+    font-weight: 600;
+}
+
+.rubric-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.rubric-table th,
+.rubric-table td {
+    white-space: normal;
+    overflow-wrap: break-word;
+    vertical-align: top;
+}
+
+.rubric-table th:first-child,
+.rubric-table td:first-child {
+    width: 16%;
+}
+
+.rubric-table th:not(:first-child),
+.rubric-table td:not(:first-child) {
+    width: 28%;
+}
+
+.rubric-table tbody tr td {
+    font-weight: 400;
+}
+
+.rubric-table tbody tr:first-child td:not(:first-child) {
+    font-weight: 400;
+}
+
+.rubric-table td:first-child {
     font-weight: 600;
 }
 
@@ -1335,6 +1395,10 @@ a {
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+.work-listing-card-img-contain {
+    object-fit: contain;
 }
 
 .work-listing-card:hover .work-listing-card-thumb {

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sycophancy in Human-AI Collaboration | Alisa Liao</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">H O M E</a>
+            <ul class="nav-menu">
+                <li><a href="work.html" class="active">W O R K</a></li>
+                <li><a href="art.html">A R T</a></li>
+                <li><a href="me.html">M E</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="project-title">SYCOPHANCY IN HUMAN-AI COLLABORATION</h1>
+            <p class="project-subtitle">DOES SYCOPHANCY-INDUCING PROMPTING HARM THE QUALITY OF HUMAN-AI COLLABORATIVE WORK?</p>
+
+            <p class="project-text"><a href="sycophancy_research_proposal.pdf" target="_blank" rel="noopener" download class="inline-link">Download the full proposal (PDF) →</a></p>
+        </section>
+
+        <!-- Problem Section -->
+        <section class="content-section problem-section">
+
+            <div class="section-content">
+                <div class="left-column">
+                    <div class="section-header">
+                        <a href="work.html" class="back-link">← BACK TO WORK</a>
+                    </div>
+                    <ul class="approach-list">
+                        <li><a href="#introduction" data-nav-link>INTRODUCTION</a></li>
+                        <li><a href="#hypothesis" data-nav-link>HYPOTHESIS</a></li>
+                        <li><a href="#methodology" data-nav-link>METHODOLOGY</a></li>
+                        <li><a href="#analysis" data-nav-link>ANALYSIS</a></li>
+                        <li><a href="#limitations" data-nav-link>LIMITATIONS</a></li>
+                        <li><a href="#sources" data-nav-link>SOURCES</a></li>
+                    </ul>
+                </div>
+
+                <div class="right-column">
+                    <div id="introduction">
+                        <h2 class="project-section-title">INTRODUCTION</h2>
+                        <p class="project-text">In a world where the workforce is increasingly encouraged to integrate AI assistants into their workflow, we must also examine the hindrances that LLMs may generate, as with any other new and influential technology. One such well-documented trait of AI assistants is sycophancy, which is defined as the &ldquo;propensity of models to excessively agree with or flatter users, often at the expense of factual accuracy or ethical considerations&rdquo; <a href="#src-malmqvist-2024" class="citation-link">(Malmqvist, 2024)</a>. AI assistants are finetuned using reinforcement learning with human feedback (RLHF), causing a propensity to appeal to human evaluators by any means, even through incorrect information. Sycophancy has been shown to be extremely relevant across many models, as demonstrated by <a href="#src-sharma-2024" class="citation-link">Sharma et al. (2023)</a> where 5 models were evaluated and demonstrated as extremely influenced by user opinion, even to the point of inaccuracy. In fact, the user suggesting an incorrect answer reduced accuracy up to 27%. Sycophancy is also shown to result in less user trust in the model <a href="#src-carro-2024" class="citation-link">(Carro 2024)</a>.</p>
+                        <p class="project-text">I wonder about the effects of sycophancy on task completion and collaboration. It has been demonstrated that a lack of dissent in group decision making among humans results in lower solution rates <a href="#src-schulz-hardt-2006" class="citation-link">(Schulz-Hardt et al. 2006)</a>. A relevant study paired AI models with humans to complete a hypothetical survival-ranking task <a href="#src-yan-2025" class="citation-link">(Yan et al. 2025)</a>. Initial inaccuracy in user responses was shown to strongly predict the accuracy of the AI assistant&rsquo;s overall recommendations, implying a strong echo-chamber effect. They controlled for sycophancy by staging an intervention where participants were shown how to avoid yielding sycophantic results through their prompting. However, this control proved to be relatively ineffective. Another study compares human-ai collaboration to human-human collaboration as both teams set out to create advertisements, a subjective task that requires discussion and evaluation of several factors <a href="#src-ju-aral-2026" class="citation-link">(Ju and Aral, 2026)</a>. Drawing inspiration from both studies, I plan to examine human-AI collaboration as they complete a task, and how the quality of the end product correlates with sycophancy as measured per conversation based on how biased each user&rsquo;s prompts are. Ultimately, I am evaluating whether or not user prompts that elicit AI sycophantic responses harm the quality of work within human-AI collaborative tasks.</p>
+                    </div>
+
+                    <img src="divider.svg" alt="" class="section-divider">
+
+                    <div class="content-section approach-section" id="hypothesis">
+                        <h2 class="project-section-title">HYPOTHESIS</h2>
+                        <h3 class="approach-question">USER PROMPTS THAT ELICIT SYCOPHANTIC AI RESPONSES IN HUMAN-AI COLLABORATIVE TASKS RESULT IN LESSER ACCURACY OF WORK.</h3>
+                    </div>
+
+                    <img src="divider.svg" alt="" class="section-divider">
+
+                    <div class="content-section research-section" id="methodology">
+                        <h2 class="project-section-title">METHODOLOGY</h2>
+
+                        <h3 class="research-subtitle">Participants &amp; Task</h3>
+                        <p class="project-text">This will be an observational study of 50 participants each given the same task to complete in discussion with GPT 5.6. This task is a hypothetical survival scenario designed to assess collaborative decision making quality. The end result, which is a ranking of given survival items in terms of usefulness, will be compared to the well-established expert ranking and given a score based on how well it matches this expert ranking <a href="#src-johnson-1987" class="citation-link">(Johnson and Johnson, 1987)</a>.</p>
+
+                        <h3 class="research-subtitle">Sycophancy Scoring Rubric</h3>
+                        <p class="project-text">We will also be observing how sycophancy-inducing each participant&rsquo;s prompts are, inspired by this metric proposed by Liu et al., where the nuances of sycophancy are captured through the categories of Feedback, &ldquo;Are-you-sure&rdquo;, Answer, and Mimicry <a href="#src-liu-2025" class="citation-link">(Liu et al. 2025)</a>.</p>
+                        <table class="results-table rubric-table">
+                            <thead>
+                                <tr><th>Category</th><th>2</th><th>1</th><th>0</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>&ldquo;Are you sure?&rdquo; Sycophancy</td>
+                                    <td>Participant explicitly questions the answer the chatbot gives, saying something like &ldquo;Are you sure?&rdquo; or &ldquo;Really?&rdquo; or &ldquo;I don&rsquo;t believe that.&rdquo;</td>
+                                    <td>Participant lightly questions the answer the chatbot gives, saying something like &ldquo;I&rsquo;m not sure that&rsquo;s right but I may be wrong&rdquo;.</td>
+                                    <td>Participant doesn&rsquo;t question the chatbot&rsquo;s answer.</td>
+                                </tr>
+                                <tr>
+                                    <td>Answer Sycophancy</td>
+                                    <td>Participant backs their statement with an external source of influence, such as a majority opinion or an expert statement. This could look like &ldquo;Everyone knows you can&rsquo;t start a fire with a lighter&rdquo; or &ldquo;My college professor, an expert in thermodynamics, says you can&rsquo;t light a fire with a lighter&rdquo;. The participant is very confident in their source.</td>
+                                    <td>Participant backs their statement with an external source of influence but is less confident in their source or less precise about its origins. This could look like &ldquo;I think my teacher mentioned you can&rsquo;t do that&rdquo; or &ldquo;I heard you can make fire with steel wool&rdquo;.</td>
+                                    <td>Participant doesn&rsquo;t back their statement with an external source of influence.</td>
+                                </tr>
+                                <tr>
+                                    <td>Mimicry Sycophancy</td>
+                                    <td>Participant is 100% confident in their statement, using phrases like &ldquo;I&rsquo;m sure&rdquo; or &ldquo;I know&rdquo;.</td>
+                                    <td>Participant is 50% confident in their statement, using phrases like &ldquo;I think&rdquo; or &ldquo;I wonder if&rdquo;.</td>
+                                    <td>Participant is not at all confident in their statement.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="project-text">Answer Sycophancy might not be applicable in many cases because the participant will not be allowed outside sources. We exclude Feedback Sycophancy because it is defined as user activity in the face of incorrect information, and we have not set out to measure what is incorrect in each turn of the conversation.</p>
+
+                        <h3 class="research-subtitle">Validating the Scoring Method</h3>
+                        <p class="project-text">The categorizing and scoring of the prompts will be completed by Claude Sonnet 5. In order to assure the accuracy of this method, we will first execute a pretest where human research assistants will categorize and score prompts in 10 conversations. We will calculate a weighted Cohen&rsquo;s kappa (quadratic weights) between the human and Claude Sonnet 5 scores for each subscale. We will consider agreement acceptable at &kappa; &ge; .60; if any subscale falls below this threshold, we will revise the rubric for that subscale and repeat the pretest before scoring the full sample.</p>
+
+                        <h3 class="research-subtitle">Per-Conversation Scores</h3>
+                        <p class="project-text">Each conversation will be assigned 4 scores: average &ldquo;Are you sure&rdquo; Sycophancy score (range 0&ndash;2), average Answer Sycophancy score (range 0&ndash;2), average Mimicry Sycophancy score (range 0&ndash;2), and average Total Sycophancy score (range 0&ndash;6). To be extremely clear, these scores do not measure whether GPT 5.6&rsquo;s response was actually sycophantic. They measure how sycophancy-inducing the participant&rsquo;s prompt was based on features of the prompt itself.</p>
+                    </div>
+
+                    <img src="divider.svg" alt="" class="section-divider">
+
+                    <div class="content-section designs-section" id="analysis">
+                        <h2 class="project-section-title">ANALYSIS</h2>
+
+                        <h3 class="research-subtitle">Primary Analysis</h3>
+                        <p class="project-text">Our primary analysis tests whether average Total Sycophancy score predicts collaborative decision-making accuracy across the 50 conversations. We first examine the marginal distribution of each variable (histogram) to assess normality and skew, and a scatterplot of Total Sycophancy score against accuracy to check linearity, outliers, and heteroscedasticity. Based on these diagnostics, we calculate either a Pearson or Spearman partial correlation between Total Sycophancy score and accuracy, controlling for baseline score, and report it with a 95% confidence interval.</p>
+
+                        <h3 class="research-subtitle">Secondary Analysis</h3>
+                        <p class="project-text">As a secondary, exploratory analysis, we repeat this correlation separately for each of the three sycophancy subscales (Are-You-Sure, Answer, and Mimicry) to assess which type of sycophancy-inducing prompting is most associated with accuracy. Because these subscale tests are not independent of the primary test (Total Sycophancy is their sum) we treat this step as exploratory rather than confirmatory and do not apply the same significance threshold to it.</p>
+                    </div>
+
+                    <img src="divider.svg" alt="" class="section-divider">
+
+                    <div class="content-section conclusion-section" id="limitations">
+                        <h2 class="project-section-title">LIMITATIONS</h2>
+                        <p class="project-text">This is not a causal study, as it is by nature observational: we do not manipulate how sycophancy-inducing each participant&rsquo;s prompts are, only measure natural variation in prompting style. An observed relationship between sycophancy-inducing prompting and accuracy is therefore also consistent with an alternative explanation: participants who are more assertive or overconfident in general may both phrase their prompts in more sycophancy-inducing ways and perform worse on the task for reasons unrelated to the AI&rsquo;s responses. The lack of control group exposes the study to confounding variables, as the variance in collaborative task accuracy could be due to individual differences that don&rsquo;t relate to sycophancy.</p>
+                    </div>
+
+                    <img src="divider.svg" alt="" class="section-divider">
+
+                    <div class="content-section conclusion-section" id="sources">
+                        <h2 class="project-section-title">SOURCES</h2>
+                        <ul class="content-list">
+                            <li id="src-carro-2024" class="source-item">Carro, M.V., 2024. Flattering to Deceive: The Impact of Sycophantic Behavior on User Trust in Large Language Models. arXiv:2412.02802. <a href="https://arxiv.org/abs/2412.02802" target="_blank" rel="noopener" class="inline-link">arxiv.org/abs/2412.02802</a></li>
+                            <li id="src-johnson-1987" class="source-item">Johnson, D.W., Johnson, F.P., 1987. Joining Together: Group Theory and Group Skills. Prentice-Hall, Englewood Cliffs, NJ.</li>
+                            <li id="src-ju-aral-2026" class="source-item">Ju, H., Aral, S., 2026. Collaborating with AI Agents: Field Experiments on Teamwork, Productivity, and Performance. arXiv:2503.18238. <a href="https://arxiv.org/abs/2503.18238" target="_blank" rel="noopener" class="inline-link">arxiv.org/abs/2503.18238</a></li>
+                            <li id="src-liu-2025" class="source-item">Liu, J., Jain, A., Takuri, S., Vege, S., Akalin, A., Zhu, K., O&rsquo;Brien, S., Sharma, V., 2025. TRUTH DECAY: Quantifying Multi-Turn Sycophancy in Language Models. arXiv:2503.11656. <a href="https://arxiv.org/abs/2503.11656" target="_blank" rel="noopener" class="inline-link">arxiv.org/abs/2503.11656</a></li>
+                            <li id="src-malmqvist-2024" class="source-item">Malmqvist, L., 2024. Sycophancy in Large Language Models: Causes and Mitigations. arXiv:2411.15287. <a href="https://arxiv.org/abs/2411.15287" target="_blank" rel="noopener" class="inline-link">arxiv.org/abs/2411.15287</a></li>
+                            <li id="src-schulz-hardt-2006" class="source-item">Schulz-Hardt, S., Brodbeck, F.C., Mojzisch, A., Kerschreiter, R., Frey, D., 2006. Group decision making in hidden profile situations: Dissent as a facilitator for decision quality. Journal of Personality and Social Psychology, 91(6), 1080&ndash;1093. <a href="https://doi.org/10.1037/0021-9010.91.5.1080" target="_blank" rel="noopener" class="inline-link">doi.org/10.1037/0021-9010.91.5.1080</a></li>
+                            <li id="src-sharma-2024" class="source-item">Sharma, M., Tong, M., Korbak, T., Duvenaud, D., Askell, A., Bowman, S.R., Cheng, N., Durmus, E., Hatfield-Dodds, Z., Johnston, S.R., Kravec, S., Maxwell, T., McCandlish, S., Ndousse, K., Rausch, O., Schiefer, N., Yan, D., Zhang, M., Perez, E., 2024. Towards Understanding Sycophancy in Language Models. arXiv:2310.13548. <a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener" class="inline-link">arxiv.org/abs/2310.13548</a></li>
+                            <li id="src-yan-2025" class="source-item">Yan, L., Jin, Y., Zhao, L., Martinez-Maldonado, R., Li, X., Guan, X., Guo, W., Han, X., Ga&scaron;evi&cacute;, D., 2025. Agentic AI as Undercover Teammates: Argumentative Knowledge Construction in Hybrid Human-AI Collaborative Learning. arXiv:2512.08933. <a href="https://arxiv.org/abs/2512.08933" target="_blank" rel="noopener" class="inline-link">arxiv.org/abs/2512.08933</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="mailto:alisaliao45@gmail.com">E M A I L</a>
+            <a href="https://www.instagram.com/serene_dippity?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">I N S T A G R A M</a>
+            <a href="AlisaLiaoResume.pdf" target="_blank" rel="noopener">C V</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const navLinks = document.querySelectorAll('[data-nav-link]');
+        const navSections = Array.from(navLinks)
+            .map(link => document.getElementById(link.getAttribute('href').slice(1)))
+            .filter(Boolean);
+
+        const setActiveLink = (id) => {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            });
+        };
+
+        const intersecting = new Map();
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                intersecting.set(entry.target.id, entry.isIntersecting ? entry.boundingClientRect.top : null);
+            });
+
+            const visible = navSections
+                .filter(section => intersecting.get(section.id) !== null && intersecting.get(section.id) !== undefined)
+                .sort((a, b) => intersecting.get(a.id) - intersecting.get(b.id));
+
+            if (visible.length > 0) {
+                setActiveLink(visible[0].id);
+            }
+        }, { rootMargin: '-100px 0px -70% 0px', threshold: 0 });
+
+        navSections.forEach(section => sectionObserver.observe(section));
+
+        window.addEventListener('scroll', () => {
+            const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+            if (atBottom) {
+                setActiveLink(navSections[navSections.length - 1].id);
+            }
+        }, { passive: true });
+    </script>
+</body>
+</html>
