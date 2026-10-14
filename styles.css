@@ -1587,3 +1587,97 @@ a {
         gap: 1.5rem;
     }
 }
+
+/* Landing page on phones: the hero stacks vertically, the draggable
+   drawing hand is turned off, and the scattered work cards become a
+   single column, so nothing is wider than the screen. */
+@media (max-width: 768px) {
+    body {
+        overflow-x: clip;
+    }
+
+    .navbar {
+        padding: 1.5rem;
+    }
+
+    .hero {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        padding: 1.5rem 1.5rem 2rem;
+    }
+
+    /* Letter-spacing also adds space after the last letter, so matching
+       left padding keeps the centered text visually centered. */
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 9vw;
+        letter-spacing: 0.3em;
+        padding-left: 0.3em;
+    }
+
+    .hero-subtitle {
+        font-size: 4vw;
+        letter-spacing: 0.2em;
+        padding-left: 0.2em;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Pulled up so the name and tagline sit over the top of the gibbon */
+    .hero-illustration {
+        position: static;
+        width: 100%;
+        height: auto;
+        margin-top: -5rem;
+        text-align: center;
+    }
+
+    .gibbon {
+        width: 85%;
+        height: auto;
+    }
+
+    .hero-quote {
+        order: 1;
+        position: static;
+        margin-top: 1.5rem;
+        font-size: 12px;
+    }
+
+    .ink-drag-layer {
+        display: none;
+    }
+
+    .featured-work {
+        margin: 2rem auto 0;
+        padding: 3rem 1.5rem;
+    }
+
+    .featured-divider {
+        margin-top: -2rem;
+    }
+
+    .featured-star {
+        top: 22rem;
+        right: 0;
+        width: 140px;
+    }
+
+    .work-grid {
+        width: auto;
+        margin: 3rem auto 0;
+    }
+
+    .work-item {
+        height: 340px;
+    }
+
+    .footer {
+        padding: 2rem 1.5rem;
+        margin-top: 2rem;
+    }
+}
