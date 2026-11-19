@@ -546,7 +546,6 @@ a {
     object-fit: cover;
     display: block;
     border-radius: 12px;
-    border: 1px solid #d1d1d1;
 }
 
 .content-section {
@@ -741,6 +740,12 @@ a {
     font-weight: 400;
     letter-spacing: 7%;
     color: #1a1a1a;
+}
+
+.problem-heading.problem-heading-body {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05rem;
 }
 
 .cvs-problem-heading {
@@ -965,7 +970,7 @@ a {
 }
 
 .features-box {
-    border: 1px solid #ccc;
+    background-color: #fff;
     border-radius: 8px;
     max-width: 400px;
     margin: 2rem auto;
@@ -993,12 +998,13 @@ a {
 .feedback-row {
     display: flex;
     gap: 2rem;
-    margin: 1.5rem 0;
+    max-width: 800px;
+    margin: 1.5rem auto;
 }
 
 .feedback-box {
+    background-color: #fff;
     flex: 1;
-    border: 1px solid #ccc;
     border-radius: 8px;
     padding: 1.5rem 2rem;
     width: 500px;
@@ -1006,6 +1012,10 @@ a {
 
 .feedback-box-centered {
     margin: 0 auto;
+}
+
+.competitive-analysis-placeholder + .feedback-box-centered {
+    margin-top: 2rem;
 }
 
 .feedback-box .content-list {
@@ -1043,7 +1053,7 @@ a {
 }
 
 .ps-box {
-    border: 1px solid #ccc;
+    background-color: #fff;
     border-radius: 8px;
     padding: 1rem 1.25rem;
 }
@@ -1060,7 +1070,6 @@ a {
 .competitive-analysis-placeholder {
     width: 100%;
     background-color: #d9d9d9;
-    border: 1px solid #ccc;
     border-radius: 12px;
     overflow: hidden;
 }
@@ -1172,7 +1181,6 @@ a {
     width: 100%;
     height: auto;
     border-radius: 16px;
-    border: 1px solid #ccc;
 }
 
 /* Chart grids (data-viz case studies): unlike .design-flow-grid, images
@@ -1202,7 +1210,6 @@ a {
     width: 100%;
     height: auto;
     border-radius: 16px;
-    border: 1px solid #ccc;
 }
 
 .design-flow-item figcaption {
@@ -1214,7 +1221,6 @@ a {
     width: 100%;
     height: auto;
     border-radius: 16px;
-    border: 1px solid #ccc;
     margin: 1.5rem 0;
 }
 
@@ -1257,7 +1263,6 @@ a {
     width: 100%;
     height: auto;
     border-radius: 16px;
-    border: 1px solid #ccc;
     margin-bottom: 1rem;
 }
 
@@ -1289,7 +1294,6 @@ a {
     width: 100%;
     height: auto;
     border-radius: 16px;
-    border: 1px solid #ccc;
     margin-bottom: 0.5rem;
 }
 
@@ -1317,7 +1321,6 @@ a {
     width: 100%;
     height: auto;
     border-radius: 16px;
-    border: 1px solid #ccc;
 }
 
 .problem-image-row {
@@ -1341,7 +1344,6 @@ a {
     height: 260px;
     object-fit: cover;
     border-radius: 12px;
-    border: 1px solid #ccc;
 }
 
 .problem-image-heading {
