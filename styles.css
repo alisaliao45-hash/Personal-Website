@@ -1014,8 +1014,236 @@ a {
     margin: 0 auto;
 }
 
-.competitive-analysis-placeholder + .feedback-box-centered {
+/* Research tables on Brilliance Exposed: white tables with hairline
+   dividers, where every heading sits in a darker block for contrast.
+   All text matches the 0.85rem body bullets. */
+.analysis-table {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+.analysis-table td {
+    width: 50%;
+    padding: 0;
+    vertical-align: top;
+}
+
+.analysis-pair thead td {
+    background-color: #e6e4df;
+    vertical-align: top;
+}
+
+.analysis-table tr + tr td {
+    border-top: 1px solid #e0ded9;
+}
+
+.analysis-table td + td {
+    border-left: 1px solid #e0ded9;
+}
+
+.analysis-head {
+    background-color: #e6e4df;
+    padding: 1rem 2rem;
+}
+
+/* Headings read as bold body text */
+.analysis-head .research-subtitle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05rem;
+    color: #1a1a1a;
+    margin-bottom: 0;
+}
+
+/* Long words wrap inside their cell instead of spilling into the next */
+.analysis-table td,
+.analysis-table th,
+.applying-findings {
+    overflow-wrap: break-word;
+}
+
+.analysis-question {
+    font-size: 0.85rem;
+    letter-spacing: 0.05rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+.analysis-source {
+    color: #999;
+}
+
+.analysis-table .content-list,
+.applying-findings .content-list {
+    margin: 0;
+    padding: 1.25rem 2rem 1.5rem;
+}
+
+.analysis-table .content-list li:last-child,
+.applying-findings .content-list li:last-child {
+    margin-bottom: 0;
+}
+
+.research-topics-intro {
+    margin-top: 3rem;
+}
+
+.research-topics-table td {
+    width: auto;
+}
+
+/* The topic column is all heading, so its block fills the cell */
+.research-topics-table td:first-child {
+    background-color: #e6e4df;
+}
+
+.research-topics-table td:first-child .analysis-head {
+    padding: 1.25rem 1.5rem;
+}
+
+.research-topics-table .content-list {
+    padding: 1.25rem 1.5rem;
+}
+
+.research-topics-table th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: #666;
+    background-color: #dcd9d3;
+}
+
+.research-topics-table th:nth-child(1) {
+    width: 30%;
+}
+
+.research-topics-table th + th {
+    border-left: 1px solid #e0ded9;
+}
+
+.analysis-sources-row td {
+    background-color: #fff !important;
+}
+
+.analysis-sources {
+    margin: 0;
+    padding: 1.25rem 1.5rem 1.5rem 2.75rem;
+}
+
+.analysis-sources li {
+    font-size: 0.85rem;
+    letter-spacing: 0.03rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 0.5rem;
+    overflow-wrap: anywhere;
+}
+
+.analysis-sources a {
+    color: #666;
+}
+
+.applying-findings {
+    max-width: 100%;
     margin-top: 2rem;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Project pages: below laptop width the 250px side menu squeezes the
+   content, so stack it above the content and keep only the back link */
+@media (max-width: 1024px) {
+    .section-content {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
+    }
+
+    .left-column {
+        position: static;
+    }
+
+    .left-column .approach-list {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .analysis-table,
+    .analysis-table tbody,
+    .analysis-table tr,
+    .analysis-table td {
+        display: block;
+        width: 100%;
+    }
+
+    /* Phones: flatten each pair so every heading sits right above its list */
+    .analysis-pair {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .analysis-pair thead,
+    .analysis-pair tbody,
+    .analysis-pair tr {
+        display: contents;
+    }
+
+    .analysis-pair .col-a {
+        order: 1;
+    }
+
+    .analysis-pair .col-b {
+        order: 2;
+    }
+
+    .analysis-pair tbody td {
+        border-top: none;
+    }
+
+    .analysis-table td + td {
+        border-left: none;
+        border-top: 1px solid #e0ded9;
+    }
+
+    .analysis-head,
+    .research-topics-table td:first-child .analysis-head {
+        padding: 1rem 1.5rem;
+    }
+
+    .analysis-table .content-list,
+    .applying-findings .content-list,
+    .research-topics-table .content-list {
+        padding: 1.25rem 1.5rem;
+    }
+
+    /* Phones: each topic becomes its own block, and each cell gets
+       its column name as a small label since the header row is hidden */
+    .research-topics-table thead {
+        display: none;
+    }
+
+    .research-topics-table tr + tr td:first-child {
+        border-top: 6px solid #f3f2ef;
+    }
+
+    .research-topics-table td[data-label]:not(:first-child)::before {
+        content: attr(data-label);
+        display: block;
+        padding: 1.25rem 1.5rem 0;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.15rem;
+        text-transform: uppercase;
+        color: #999;
+    }
 }
 
 .feedback-box .content-list {
@@ -1682,4 +1910,94 @@ a {
         padding: 2rem 1.5rem;
         margin-top: 2rem;
     }
+}
+
+
+/* Sitewide box and table style, matching the Brilliance Exposed research
+   tables: white with no outline, headings as bold body text in a darker
+   block, hairline dividers, and all text at the 0.85rem body size. */
+.feedback-box {
+    max-width: 100%;
+}
+
+.feedback-box,
+.features-box {
+    padding: 0;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+.feedback-box > .research-subtitle,
+.features-box > .research-subtitle {
+    display: block;
+    margin: 0;
+    padding: 1rem 2rem;
+    background-color: #e6e4df;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05rem;
+    text-transform: none;
+    text-align: left;
+    color: #1a1a1a;
+}
+
+.feedback-box > .content-list,
+.features-box > .content-list {
+    margin: 0;
+    padding: 1.25rem 2rem 1.5rem;
+}
+
+.stats-table-wrapper,
+.results-table-wrapper {
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.rubric-table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.stats-table,
+.results-table {
+    background-color: #fff;
+    font-size: 0.85rem;
+    letter-spacing: 0.03rem;
+}
+
+.stats-table th,
+.stats-table td,
+.results-table th,
+.results-table td {
+    border: none;
+    border-bottom: 1px solid #e0ded9;
+    padding: 0.75rem 1rem;
+}
+
+.stats-table th + th,
+.stats-table td + td,
+.results-table th + th,
+.results-table td + td {
+    border-left: 1px solid #e0ded9;
+}
+
+.stats-table tbody tr:last-child td,
+.results-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.stats-table thead th,
+.results-table th {
+    background-color: #dcd9d3;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: #666;
+}
+
+/* Row labels in the rubric read like the topic column on Brilliance Exposed */
+.rubric-table td:first-child {
+    background-color: #e6e4df;
 }
