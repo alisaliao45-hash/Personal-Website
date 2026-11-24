@@ -1093,44 +1093,106 @@ a {
     margin-top: 3rem;
 }
 
-.research-topics-table td {
-    width: auto;
+/* Online research: four equal cards in one row, grey heading over a white list */
+.research-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 1.25rem;
+    row-gap: 0;
+    margin-top: 1.5rem;
 }
 
-/* The topic column is all heading, so its block fills the cell */
-.research-topics-table td:first-child {
-    background-color: #e6e4df;
+/* Each card spans a heading row and a list row, so headings line up */
+.research-card {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+    margin-bottom: 1.25rem;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
-.research-topics-table td:first-child .analysis-head {
-    padding: 1.25rem 1.5rem;
+.research-card .analysis-head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 1.25rem 1.25rem;
 }
 
-.research-topics-table .content-list {
-    padding: 1.25rem 1.5rem;
+.research-card .content-list {
+    margin: 0;
+    padding: 1.25rem 1.25rem 1.5rem;
 }
 
-.research-topics-table th {
-    padding: 1rem 1.5rem;
-    text-align: left;
+.research-card .content-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Sources: a plain wide white box */
+.sources-section .analysis-sources {
+    padding: 0.5rem 0 0 1.25rem;
+}
+
+.sources-link {
+    color: #7387B7;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.research-sources {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem 0.25rem;
+    overflow-wrap: break-word;
+}
+
+.research-sources .research-subtitle {
     font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
-    color: #666;
-    background-color: #dcd9d3;
+    font-weight: 700;
+    letter-spacing: 0.05rem;
+    color: #1a1a1a;
+    margin-bottom: 0;
 }
 
-.research-topics-table th:nth-child(1) {
-    width: 30%;
+.research-sources .analysis-sources {
+    padding: 0.75rem 0 1.25rem 1.25rem;
 }
 
-.research-topics-table th + th {
-    border-left: 1px solid #e0ded9;
+@media (max-width: 1200px) {
+    .research-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
-.analysis-sources-row td {
-    background-color: #fff !important;
+@media (max-width: 600px) {
+    .research-cards {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Push pin holding the design goals note to the page */
+.applying-findings {
+    position: relative;
+    overflow: visible !important;
+}
+
+.applying-findings > .analysis-head {
+    border-radius: 8px 8px 0 0;
+}
+
+.push-pin {
+    position: absolute;
+    top: -54px;
+    left: 72%;
+    width: 60px;
+    height: auto;
+    transform: translateX(-50%) rotate(-8deg);
+    pointer-events: none;
+    z-index: 5;
 }
 
 .analysis-sources {
@@ -1153,7 +1215,7 @@ a {
 
 .applying-findings {
     max-width: 100%;
-    margin-top: 2rem;
+    margin-top: 5rem;
     padding: 0;
     overflow: hidden;
 }
@@ -1213,36 +1275,14 @@ a {
         border-top: 1px solid #e0ded9;
     }
 
-    .analysis-head,
-    .research-topics-table td:first-child .analysis-head {
+    .analysis-head {
         padding: 1rem 1.5rem;
     }
 
     .analysis-table .content-list,
     .applying-findings .content-list,
-    .research-topics-table .content-list {
+    .research-card .content-list {
         padding: 1.25rem 1.5rem;
-    }
-
-    /* Phones: each topic becomes its own block, and each cell gets
-       its column name as a small label since the header row is hidden */
-    .research-topics-table thead {
-        display: none;
-    }
-
-    .research-topics-table tr + tr td:first-child {
-        border-top: 6px solid #f3f2ef;
-    }
-
-    .research-topics-table td[data-label]:not(:first-child)::before {
-        content: attr(data-label);
-        display: block;
-        padding: 1.25rem 1.5rem 0;
-        font-size: 0.85rem;
-        font-weight: 600;
-        letter-spacing: 0.15rem;
-        text-transform: uppercase;
-        color: #999;
     }
 }
 
@@ -1460,10 +1500,142 @@ a {
     margin: 2rem 0;
 }
 
+/* Numbered groups of screens in Our Designs on Brilliance Exposed */
+.design-group {
+    margin-top: 3.5rem;
+}
+
+.design-group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #dcd9d3;
+}
+
+.design-group-num {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    color: #7387B7;
+}
+
+.design-group-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05rem;
+    color: #1a1a1a;
+}
+
+.design-group .design-pages-grid {
+    margin-top: 1.5rem;
+}
+
 .design-page figcaption {
     text-align: left;
     margin-bottom: 0.75rem;
     font-weight: 600;
+}
+
+/* A pop-up shown at the same scale as the full-page screens: it covers
+   roughly a third of the page width on the live site */
+.design-page .design-popup-img {
+    width: 33%;
+    border-radius: 6px;
+}
+
+/* Revised designs: each screen centred, with a hand-drawn arrow
+   annotation on either side pointing at what changed. --y is the
+   height on the screen the arrow tip points to */
+.revised-designs {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.revised-figure {
+    width: 48%;
+    margin: 0 auto;
+}
+
+.revised-frame {
+    position: relative;
+}
+
+/* Each note is a row: the arrow tip touches the screen and the
+   text sits out by the arrow's tail */
+.revised-note {
+    position: absolute;
+    width: 54%;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.revised-note p {
+    flex: 1;
+    font-size: 0.85rem;
+    letter-spacing: 0.05rem;
+    line-height: 1.6;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.revised-arrow {
+    flex: none;
+    width: 80px;
+}
+
+/* Left note: [text][arrow curling up-right]. The arrow sits at the
+   bottom of the row; its tip is ~31px above the row's bottom, at --y */
+.revised-note-left {
+    right: calc(100% + 0.25rem);
+    top: var(--y);
+    transform: translateY(calc(-100% + 31px));
+    align-items: flex-end;
+    text-align: right;
+}
+
+.revised-note-left p {
+    margin-bottom: 1.25rem;
+}
+
+/* Right note: text on top, indented so it starts over the arrow's
+   tail; the arrow below points left at the screen. Its tip is ~18px
+   above the note's bottom and sits at --y */
+.revised-note-right {
+    left: calc(100% + 0.25rem);
+    top: var(--y);
+    transform: translateY(calc(-100% + 18px));
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+.revised-note-right p {
+    padding-left: 22px;
+}
+
+@media (max-width: 768px) {
+    .revised-figure {
+        width: 100%;
+    }
+
+    .revised-note {
+        position: static;
+        width: auto;
+        transform: none;
+        align-items: flex-start;
+        text-align: left;
+        margin-top: 0.75rem;
+        padding-left: 1rem;
+        border-left: 2px solid #7387B7;
+    }
+
+    .revised-arrow {
+        display: none;
+    }
 }
 
 .design-page .design-wide-img {
@@ -1936,7 +2108,7 @@ a {
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.05rem;
-    text-transform: none;
+    text-transform: uppercase;
     text-align: left;
     color: #1a1a1a;
 }
@@ -2000,4 +2172,22 @@ a {
 /* Row labels in the rubric read like the topic column on Brilliance Exposed */
 .rubric-table td:first-child {
     background-color: #e6e4df;
+}
+
+/* Conclusions: short bulleted lists under bold subheadings */
+.conclusion-section .problem-heading-body {
+    margin-top: 2rem;
+}
+
+.conclusion-list {
+    margin: 0.75rem 0 0;
+    padding-left: 1.25rem;
+}
+
+/* Bold heading blocks all read as caps, matching the bold body headings
+   like "USABILITY AND ARTISTIC EXPRESSION…" */
+.analysis-head .research-subtitle,
+.research-sources .research-subtitle,
+.design-group-title {
+    text-transform: uppercase;
 }
